@@ -8,10 +8,10 @@ public class PlayerController : PhysicsObject
     
     protected float maxSpeed = 0;
     [SerializeField]
-    protected float jumpTakeOffSpeed = 5;
+    protected float jumpTakeOffSpeed = 8;
 
     protected SpriteRenderer spriteRenderer;
-    protected Animator animator;
+    //protected Animator animator;
 
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -20,7 +20,7 @@ public class PlayerController : PhysicsObject
     {
         base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
     }
 
@@ -51,8 +51,8 @@ public class PlayerController : PhysicsObject
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 
-        animator.SetBool("Grounded", isGrounded);
-        animator.SetFloat("VelocityY", velocity.y);
+        //animator.SetBool("Grounded", isGrounded);
+        //animator.SetFloat("VelocityY", velocity.y);
         TargetVelocity = move * maxSpeed;
 
     }
@@ -70,7 +70,7 @@ public class PlayerController : PhysicsObject
     public void Dead()
     {
         this.IsDead = !this.IsDead;
-        animator.SetBool("IsDead", this.IsDead);
+        //animator.SetBool("IsDead", this.IsDead);
         GameManager.StopGame();
 
     }
@@ -78,7 +78,7 @@ public class PlayerController : PhysicsObject
     public void Hurt()
     {
         IsHurt = !IsHurt;
-        animator.SetBool("Hurt", IsHurt);
+        //animator.SetBool("Hurt", IsHurt);
     }
 
     
