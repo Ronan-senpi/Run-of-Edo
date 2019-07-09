@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformManager : MonoBehaviour
+public class PlatformManager : Base, IManager
 {
-    [SerializeField]
-    protected GameObject[] platforms;
+    protected float maxYScrean = 1f;
+    protected float minYScrean = -4f;
+    protected override void Awake()
+    {
+        base.Awake();
+    }
     // Start is called before the first frame update
     void Start()
     {

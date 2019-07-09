@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class ObstacleController : BaseController
+public abstract class ObstacleController : Base
 {
     protected Collider2D Col{ get; set; }
     protected override void Awake()

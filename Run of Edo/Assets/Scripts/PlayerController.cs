@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : PhysicsObject
 {
-    
+
     protected float maxSpeed = 0;
     [SerializeField]
     protected float jumpTakeOffSpeed = 8;
 
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
+    
 
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -23,7 +25,6 @@ public class PlayerController : PhysicsObject
         //animator = GetComponent<Animator>();
 
     }
-
 
     protected override void ComputeVelocity()
     {
@@ -39,7 +40,7 @@ public class PlayerController : PhysicsObject
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            
+
             //if (velocity.y > 0)
             //{
             //    velocity.y = velocity.y * .5f;
@@ -80,6 +81,4 @@ public class PlayerController : PhysicsObject
         IsHurt = !IsHurt;
         //animator.SetBool("Hurt", IsHurt);
     }
-
-    
 }
