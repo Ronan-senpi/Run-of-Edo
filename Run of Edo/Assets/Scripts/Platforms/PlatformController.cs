@@ -10,6 +10,5 @@ public class PlatformController : AutoMoveController
     protected override void Awake()
     {
         base.Awake();
-        this.PlatformManager = FindManager<PlatformManager>("PlatformManager");
     }
 }

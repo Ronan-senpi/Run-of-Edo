@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Destroyable : MonoBehaviour
+public abstract class Destroyable : Base
 {
     public abstract void Destroy();
 }
