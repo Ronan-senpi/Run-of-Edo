@@ -4,6 +4,5 @@ using UnityEngine;
 
 public abstract class Destroyable : MonoBehaviour
 {
-    protected abstract void OnDestroy();
-
+    public abstract void Destroy();
 }

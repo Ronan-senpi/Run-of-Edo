@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatformBody : Destroyable
 {
-    protected override void OnDestroy()
+    public override void Destroy()
     {
         Destroy(transform.parent.gameObject);
     }
