@@ -6,6 +6,10 @@ public class AutoMoveController : Base
 {
     [SerializeField]
     protected bool enableAutoMove = true;
+    public void autoMoveState()
+    {
+        enableAutoMove = !enableAutoMove;
+    }
     // Use this for initialization
     void Start()
     {
