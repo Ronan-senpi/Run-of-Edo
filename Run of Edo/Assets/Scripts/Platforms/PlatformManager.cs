@@ -7,9 +7,6 @@ using Random = UnityEngine.Random;
 public class PlatformManager : Base, IManager
 {
     [SerializeField]
-    int nbPlatforms = 3;
-
-    [SerializeField]
     protected GameObject[] platforms;
 
     protected float maxY = 1f;
@@ -59,7 +56,7 @@ public class PlatformManager : Base, IManager
 
     private float XModifier(float x)
     {
-        throw new NotImplementedException();
+        return x;
     }
 
     protected float YModifier(float y)

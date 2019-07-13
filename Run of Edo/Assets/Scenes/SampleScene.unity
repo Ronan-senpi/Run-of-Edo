@@ -367,10 +367,7 @@ MonoBehaviour:
   nbPlatforms: 5
   platforms:
   - {fileID: 6364452178960936983, guid: 07486195382e34b43876ab9f7cb46064, type: 3}
-  - {fileID: 6364452178960936983, guid: 5d17811ce24c2634e901dfde0de703f7, type: 3}
-  - {fileID: 6364452178960936983, guid: c9b120c7d6f15e744936dc2f8a2e9f1b, type: 3}
-  - {fileID: 6364452178960936983, guid: 15798c607c7fd474288536bdaf1a9b1f, type: 3}
-  - {fileID: 6364452178960936983, guid: 85f40e2bf5514274b91a54dc756e998c, type: 3}
+  - {fileID: 6364452178960936983, guid: a9d4642a2ab77794582d4b65ce2c6325, type: 3}
 --- !u!1 &1488900728
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +470,11 @@ PrefabInstance:
         type: 3}
       propertyPath: enableAutoMove
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110490955860313998, guid: 07486195382e34b43876ab9f7cb46064,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07486195382e34b43876ab9f7cb46064, type: 3}
