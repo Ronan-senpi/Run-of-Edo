@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoMoveController : BaseController
+public class AutoMoveController : Base
 {
-
+    [SerializeField]
+    protected bool enableAutoMove = true;
+    public void autoMoveState()
+    {
+        enableAutoMove = !enableAutoMove;
+    }
     // Use this for initialization
     void Start()
     {
@@ -14,6 +19,7 @@ public class AutoMoveController : BaseController
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.left * GameManager.GetSpeed() * Time.deltaTime;
+        if (enableAutoMove)
+            transform.position += Vector3.left * GameManager.GetSpeed() * Time.deltaTime;
     }
 }

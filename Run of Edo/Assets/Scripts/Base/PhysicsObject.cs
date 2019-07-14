@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PhysicsObject : BaseController
+public abstract class PhysicsObject : Base
 {
     [SerializeField]
     protected float minGoundNormalY = .65f;
     [SerializeField]
     protected float gravityModifier = 1f;
-
+    [SerializeField]
     protected bool isGrounded;
     protected Vector2 groundNormal;
     protected Vector2 velocity;
@@ -45,7 +45,7 @@ public abstract class PhysicsObject : BaseController
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         TargetVelocity = Vector2.zero;
         ComputeVelocity();

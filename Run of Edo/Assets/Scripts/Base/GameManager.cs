@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IManager
 {
     [SerializeField]
     protected float gameSpeed = 15;
@@ -71,6 +71,5 @@ public class GameManager : MonoBehaviour
         playerController.Hurt();
         Debug.Log("Speed " + gameSpeed);
     }
-
 
 }
