@@ -364,7 +364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec16e4f5b1f2a6439be45d2e4709763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbPlatforms: 5
+  maxXJump: 7
+  minXJump: 4
   platforms:
   - {fileID: 6364452178960936983, guid: 07486195382e34b43876ab9f7cb46064, type: 3}
   - {fileID: 6364452178960936983, guid: a9d4642a2ab77794582d4b65ce2c6325, type: 3}

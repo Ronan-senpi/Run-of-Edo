@@ -6,11 +6,18 @@ using Random = UnityEngine.Random;
 
 public class PlatformManager : Base, IManager
 {
+
+    [SerializeField]
+    protected float maxXJump = 7f;
+    [SerializeField]
+    protected float minXJump = 4f;
+
     [SerializeField]
     protected GameObject[] platforms;
 
     protected float maxY = 1f;
     protected float minY = -4f;
+
     protected float MaxJumpY = 2;
 
     protected float platformLenght = 0;
@@ -56,6 +63,7 @@ public class PlatformManager : Base, IManager
 
     private float XModifier(float x)
     {
+        x += (float)Math.Round(Random.Range(minXJump, maxXJump), 0);
         return x;
     }
 
