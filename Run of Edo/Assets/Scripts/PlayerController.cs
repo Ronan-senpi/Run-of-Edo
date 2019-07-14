@@ -40,11 +40,10 @@ public class PlayerController : PhysicsObject
         }
         else if (Input.GetButtonUp("Jump"))
         {
-
-            //if (velocity.y > 0)
-            //{
-            //    velocity.y = velocity.y * .5f;
-            //}
+            if (velocity.y > 0)
+            {
+                velocity.y = velocity.y * .25f;
+            }
         }
         bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
         if (flipSprite)

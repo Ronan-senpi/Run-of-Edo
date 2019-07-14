@@ -333,7 +333,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlatformManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -345,12 +345,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175871173}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 8.950001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 516840140}
-  m_Father: {fileID: 1488900729}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1175871175
 MonoBehaviour:
@@ -369,37 +369,6 @@ MonoBehaviour:
   platforms:
   - {fileID: 6364452178960936983, guid: 07486195382e34b43876ab9f7cb46064, type: 3}
   - {fileID: 6364452178960936983, guid: a9d4642a2ab77794582d4b65ce2c6325, type: 3}
---- !u!1 &1488900728
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1488900729}
-  m_Layer: 0
-  m_Name: Platforms
-  m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1488900729
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488900728}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.950001, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1175871174}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1830106024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -470,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 6364452178960937065, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
       propertyPath: enableAutoMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2110490955860313998, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
