@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformBody : Destroyable
+public class PlatformBody : Base, Destroyable
 {
     protected PlatformManager platformManager;
     protected override void Awake()
@@ -10,7 +10,7 @@ public class PlatformBody : Destroyable
         base.Awake();
         platformManager = FindManager<PlatformManager>("PlatformManager");
     }
-    public override void Destroy()
+    public void Destroy()
     {
         Destroy(transform.parent.gameObject);
         platformManager.AddPlatform();

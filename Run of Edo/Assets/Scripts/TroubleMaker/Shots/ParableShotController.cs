@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Destroyable
+public class ParableShotController : ShotController
 {
-    void Destroy();
+    
 }

@@ -28,7 +28,7 @@ public class PlayerController : PhysicsObject
 
     protected override void ComputeVelocity()
     {
-        if (IsDead)
+        if ( IsDead)
             return;
 
         Vector2 move = Vector2.zero;

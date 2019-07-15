@@ -51,7 +51,6 @@ public class PlatformManager : Base, IManager
 
         GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
         newPlat.transform.parent = platformContainer;
-        //newPlat.GetComponent<PlatformController>().autoMoveState();
     }
     
     protected Vector3 PositionModifier(Vector3 vector)
@@ -75,7 +74,6 @@ public class PlatformManager : Base, IManager
             LocalMaxY = maxY;
         }
         y = (float)Math.Round(Random.Range(minY, LocalMaxY), 1);
-        Debug.Log(y);
         return y;
     }
 }

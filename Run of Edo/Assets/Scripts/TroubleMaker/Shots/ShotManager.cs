@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileManager : Base, IManager
+public class ShotManager : Base, IManager
 {
     PlayerController playerController;
     protected override void Awake()

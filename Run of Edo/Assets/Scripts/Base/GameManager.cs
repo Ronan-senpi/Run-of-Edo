@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour, IManager
     public void StopGame()
     {
         //Pas fou mais fait le taff pour le moment
-        Time.timeScale = 0;
+        gameSpeed = 0;
     }
 
     public float GetSpeed()
