@@ -9,7 +9,6 @@ public abstract class PhysicsObject : Base
     protected float minGoundNormalY = .65f;
     [SerializeField]
     protected float gravityModifier = 1f;
-    [SerializeField]
     protected bool isGrounded;
     protected Vector2 groundNormal;
     protected Vector2 velocity;

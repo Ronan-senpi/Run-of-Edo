@@ -6,10 +6,9 @@ public class AutoMoveController : Base
 {
     [SerializeField]
     protected bool enableAutoMove = true;
-    public void autoMoveState()
-    {
-        enableAutoMove = !enableAutoMove;
-    }
+    [SerializeField]
+    protected float localSpeedModifier = 1f;
+
     // Use this for initialization
     void Start()
     {
@@ -17,9 +16,9 @@ public class AutoMoveController : Base
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (enableAutoMove)
-            transform.position += Vector3.left * GameManager.GetSpeed() * Time.deltaTime;
+            transform.position += Vector3.left * (GameManager.GetSpeed()*localSpeedModifier) * Time.deltaTime;
     }
 }

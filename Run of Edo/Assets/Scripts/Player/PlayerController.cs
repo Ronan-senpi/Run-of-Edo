@@ -10,10 +10,11 @@ public class PlayerController : PhysicsObject
     protected float maxSpeed = 0;
     [SerializeField]
     protected float jumpTakeOffSpeed = 8;
+    protected bool ForceAlive;
 
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
-    
+
 
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -25,12 +26,20 @@ public class PlayerController : PhysicsObject
         //animator = GetComponent<Animator>();
 
     }
+    protected override void Update()
+    {
+        if (!IsDead && GameManager.IsStart)
+        {
+            base.Update();
+        }
+        if (ForceAlive)
+        {
+            Relive();
+        }
+    }
 
     protected override void ComputeVelocity()
     {
-        if (IsDead)
-            return;
-
         Vector2 move = Vector2.zero;
 
         move.x = Vector2.right.x;
@@ -40,11 +49,10 @@ public class PlayerController : PhysicsObject
         }
         else if (Input.GetButtonUp("Jump"))
         {
-
-            //if (velocity.y > 0)
-            //{
-            //    velocity.y = velocity.y * .5f;
-            //}
+            if (velocity.y > 0)
+            {
+                velocity.y = velocity.y * .25f;
+            }
         }
         bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
         if (flipSprite)
@@ -61,19 +69,23 @@ public class PlayerController : PhysicsObject
 
     public void Jump(float jumpValue)
     {
-        if (!this.IsDead)
-        {
-            velocity.y = jumpValue;
-            isGrounded = true;
-        }
+        velocity.y = jumpValue;
+        isGrounded = true;
     }
 
     public void Dead()
     {
-        this.IsDead = !this.IsDead;
+        this.IsDead = true;
+        GetComponent<Rigidbody2D>().constraints =  RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
         GameManager.StopGame();
-
+    }
+    public void Relive()
+    {
+        this.IsDead = false;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        //animator.SetBool("IsDead", this.IsDead);
+        GameManager.StartGame();
     }
 
     public void Hurt()

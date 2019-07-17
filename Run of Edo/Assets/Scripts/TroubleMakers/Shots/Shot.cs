@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Destroyable
+public interface Shot
 {
-    void ExitDestroy();
+    void ShotDestroy();
 }

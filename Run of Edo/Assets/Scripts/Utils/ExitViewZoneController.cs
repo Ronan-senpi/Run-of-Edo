@@ -17,12 +17,12 @@ public class ExitViewZoneController : MonoBehaviour
         Destroyable dest = collision.GetComponent<Destroyable>();
         if (dest != null)
         {
-            dest.Destroy();
+            dest.ExitDestroy();
 
         }
         else
         {
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
     }
 
