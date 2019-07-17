@@ -10,7 +10,7 @@ public class PlatformBody : Base, Destroyable
         base.Awake();
         platformManager = FindManager<PlatformManager>("PlatformManager");
     }
-    public void Destroy()
+    public void ExitDestroy()
     {
         Destroy(transform.parent.gameObject);
         platformManager.AddPlatform();

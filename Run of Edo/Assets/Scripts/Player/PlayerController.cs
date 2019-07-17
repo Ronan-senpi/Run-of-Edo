@@ -13,7 +13,7 @@ public class PlayerController : PhysicsObject
 
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
-    
+
 
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -25,12 +25,15 @@ public class PlayerController : PhysicsObject
         //animator = GetComponent<Animator>();
 
     }
-
+    protected override void Update()
+    {
+        if (!IsDead && GameManager.IsStart)
+        {
+            base.Update();
+        }
+    }
     protected override void ComputeVelocity()
     {
-        if ( IsDead)
-            return;
-
         Vector2 move = Vector2.zero;
 
         move.x = Vector2.right.x;
@@ -60,19 +63,18 @@ public class PlayerController : PhysicsObject
 
     public void Jump(float jumpValue)
     {
-        if (!this.IsDead)
-        {
+
             velocity.y = jumpValue;
             isGrounded = true;
-        }
+        
     }
 
     public void Dead()
     {
-        this.IsDead = !this.IsDead;
+        this.IsDead = true;
+        Debug.Log("IsDead : " + IsDead);
         //animator.SetBool("IsDead", this.IsDead);
         GameManager.StopGame();
-
     }
 
     public void Hurt()

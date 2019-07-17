@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotBody : MonoBehaviour, Destroyable
+public class ShotBody : MonoBehaviour, Destroyable, Shot
 {
-    public virtual void Destroy()
+    public virtual void ExitDestroy()
     {
         Destroy(transform.parent.gameObject);
     }
+
+    public void ShotDestroy()
+    {
+        throw new System.NotImplementedException();
+    }
+
+
 
     // OnTriggerEnter2D is called when the Collider2D other enters the trigger (2D physics only)
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Player")
         {
+            Debug.Log("Kill !");
             collision.transform.GetComponent<PlayerController>().Dead();
         }
     }

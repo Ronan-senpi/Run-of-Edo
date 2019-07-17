@@ -46,7 +46,7 @@ public class RangeController : MonoBehaviour
 
         if (collision.transform.tag == "Shot" && shooting)
         {
-            collision.transform.GetComponent<ShotBody>().Destroy();
+            collision.transform.GetComponent<ShotBody>().ExitDestroy();
         }
     }
 

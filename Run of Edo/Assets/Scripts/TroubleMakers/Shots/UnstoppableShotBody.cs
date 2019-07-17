@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UnstoppableShotBody : ShotBody
 {
-    public override void Destroy()
+    public override void ExitDestroy()
     {
-        Debug.Log("Unstoppable !!!".ToUpper());
+        base.ExitDestroy();
     }
 }

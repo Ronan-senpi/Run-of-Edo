@@ -9,9 +9,19 @@ public class GameManager : MonoBehaviour, IManager
 
     protected GameObject playerGo;
     protected PlayerController playerController;
+    protected float StartSince = 0;
+
+    protected float gameSpeedOld = 0;
+    public bool IsStart { get { return gameSpeed > 0; } }
+
+    //TODO : REMOVE FOR RELEASE !!
+    [SerializeField]
+    protected bool forceStart = false;
 
     private void Awake()
     {
+        gameSpeedOld = gameSpeed;
+        //gameSpeed = 0;
         playerGo = GameObject.Find("Player");
         if (playerGo != null)
         {
@@ -33,13 +43,24 @@ public class GameManager : MonoBehaviour, IManager
     // Update is called once per frame
     void Update()
     {
-
+        //TODO : REMOVE FOR RELEASE !!
+        if (forceStart)
+        {
+            StartGame();
+        }
     }
 
     public void StopGame()
     {
         //Pas fou mais fait le taff pour le moment
         gameSpeed = 0;
+        Debug.Log("IsStart : " + IsStart);
+    }
+
+    public void StartGame()
+    {
+        gameSpeed = gameSpeedOld;
+        Debug.Log("IsStart : " + IsStart);
     }
 
     public float GetSpeed()
@@ -69,7 +90,6 @@ public class GameManager : MonoBehaviour, IManager
         yield return new WaitForSeconds(slowdownTime);
         gameSpeed = MaxSpeedOrigin;
         playerController.Hurt();
-        Debug.Log("Speed " + gameSpeed);
     }
 
 }
