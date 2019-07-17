@@ -9,9 +9,9 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
         Destroy(transform.parent.gameObject);
     }
 
-    public void ShotDestroy()
+    public virtual void ShotDestroy()
     {
-        throw new System.NotImplementedException();
+        ExitDestroy();
     }
 
 
@@ -21,8 +21,8 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
     {
         if (collision.transform.tag == "Player")
         {
-            Debug.Log("Kill !");
             collision.transform.GetComponent<PlayerController>().Dead();
+            ExitDestroy();
         }
     }
 

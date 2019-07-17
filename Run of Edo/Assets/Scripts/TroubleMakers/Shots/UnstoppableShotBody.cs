@@ -8,4 +8,7 @@ public class UnstoppableShotBody : ShotBody
     {
         base.ExitDestroy();
     }
+    public override void ShotDestroy()
+    {
+    }
 }

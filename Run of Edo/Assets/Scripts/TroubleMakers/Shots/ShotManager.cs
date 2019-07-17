@@ -29,8 +29,11 @@ public class ShotManager : Base, IManager
         yield return new WaitForSeconds(Random.Range(MinTimeShoot, MaxTimeShoot));
         Vector3 startPositionShot = playerController.transform.position;
         startPositionShot.x = transform.position.x;
-        GameObject shot = Instantiate(shots[Random.Range(0, shots.Length)], startPositionShot, Quaternion.identity);
-        shot.transform.parent = transform;
+        if (GameManager.IsStart)
+        {
+            GameObject shot = Instantiate(shots[Random.Range(0, shots.Length)], startPositionShot, Quaternion.identity);
+            shot.transform.parent = transform;
+        }
         StartCoroutine(Shoot());
     }
 

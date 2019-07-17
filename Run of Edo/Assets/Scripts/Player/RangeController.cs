@@ -42,11 +42,9 @@ public class RangeController : MonoBehaviour
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.transform.name);
-
         if (collision.transform.tag == "Shot" && shooting)
         {
-            collision.transform.GetComponent<ShotBody>().ExitDestroy();
+            collision.transform.GetComponent<ShotBody>().ShotDestroy();
         }
     }
 

@@ -10,6 +10,7 @@ public class PlayerController : PhysicsObject
     protected float maxSpeed = 0;
     [SerializeField]
     protected float jumpTakeOffSpeed = 8;
+    protected bool ForceAlive;
 
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
@@ -31,7 +32,12 @@ public class PlayerController : PhysicsObject
         {
             base.Update();
         }
+        if (ForceAlive)
+        {
+            Relive();
+        }
     }
+
     protected override void ComputeVelocity()
     {
         Vector2 move = Vector2.zero;
@@ -63,18 +69,23 @@ public class PlayerController : PhysicsObject
 
     public void Jump(float jumpValue)
     {
-
-            velocity.y = jumpValue;
-            isGrounded = true;
-        
+        velocity.y = jumpValue;
+        isGrounded = true;
     }
 
     public void Dead()
     {
         this.IsDead = true;
-        Debug.Log("IsDead : " + IsDead);
+        GetComponent<Rigidbody2D>().constraints =  RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
         GameManager.StopGame();
+    }
+    public void Relive()
+    {
+        this.IsDead = false;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        //animator.SetBool("IsDead", this.IsDead);
+        GameManager.StartGame();
     }
 
     public void Hurt()
