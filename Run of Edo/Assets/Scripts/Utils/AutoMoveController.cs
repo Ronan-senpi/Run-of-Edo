@@ -18,7 +18,7 @@ public class AutoMoveController : Base
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (enableAutoMove)
+        if (enableAutoMove && GameManager.IsStart)
             transform.position += Vector3.left * (GameManager.GetSpeed()*localSpeedModifier) * Time.deltaTime;
     }
 }

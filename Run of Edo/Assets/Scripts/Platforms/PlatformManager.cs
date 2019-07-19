@@ -28,17 +28,12 @@ public class PlatformManager : Base, IManager
     {
         base.Awake();
         platformContainer = transform.Find("PlatformContainer");
-        //CreatePlatform();
         for (int i = 0; i < 5; i++)
         {
-            AddPlatform();
+           AddPlatform();
         }
     }
 
-    private void Update()
-    {
-        //CreatePlatform();
-    }
     protected int RandIndexPlatform()
     {
         return Random.Range(0, platforms.Length);

@@ -5,12 +5,13 @@ using UnityEngine;
 public class RangeController : MonoBehaviour
 {
     [SerializeField]
-    float minScal = .2f;
+    protected float minScal = .2f;
     [SerializeField]
-    float reduceScaleValue = .2f;
+    protected float reduceScaleValue = .2f;
     [SerializeField]
-    float cooldown = 1f;
-
+    protected float cooldown = 1.5f;
+    [SerializeField]
+    protected float rangeModifier = 09f;
     protected bool shooting { get { return Input.GetButtonDown("Fire1") && !playerController.IsDead; } }
 
     protected Transform tPlayer;
@@ -32,12 +33,25 @@ public class RangeController : MonoBehaviour
                 transform.localScale -= new Vector3(reduceScaleValue, reduceScaleValue);
             }
         }
-        if (transform.localScale.x < originalScale.x)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, originalScale, cooldown * Time.deltaTime);
-        }
+        RangeRecover();
     }
 
+    private void RangeRecover()
+    {
+        Vector3 vec;
+        if (transform.localScale.x <= originalScale.x)
+        {
+            float localRangeModifer = Random.Range(-rangeModifier, 0);
+            vec = new Vector3(localRangeModifer, localRangeModifer, originalScale.z);
+        }
+        else
+        {
+            float localRangeModifer = Random.Range(0, rangeModifier);
+            vec = new Vector3(localRangeModifer, localRangeModifer, originalScale.z);
+        }
+        transform.localScale = Vector3.MoveTowards(transform.localScale, originalScale + vec, cooldown * Time.deltaTime);
+
+    }
 
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
