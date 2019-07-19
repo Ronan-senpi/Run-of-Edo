@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour, IManager
     void Update()
     {
         //TODO : REMOVE FOR RELEASE !!
-        if (forceStart)
+        if (forceStart && !playerController.IsDead)
         {
             StartGame();
         }

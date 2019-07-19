@@ -12,7 +12,6 @@ public class RangeController : MonoBehaviour
     protected float cooldown = 1.5f;
     [SerializeField]
     protected float rangeModifier = 09f;
-    protected bool shooting { get { return Input.GetButtonDown("Fire1") && !playerController.IsDead; } }
 
     protected Transform tPlayer;
     protected PlayerController playerController;
@@ -26,14 +25,13 @@ public class RangeController : MonoBehaviour
     private void Update()
     {
         transform.position = tPlayer.position;
-        if (shooting)
+        if (!playerController.IsDead)
         {
-            if (transform.localScale.x > minScal)
-            {
+            if (Input.GetButtonDown("Fire1") && transform.localScale.x > minScal)
                 transform.localScale -= new Vector3(reduceScaleValue, reduceScaleValue);
-            }
+
+            RangeRecover();
         }
-        RangeRecover();
     }
 
     private void RangeRecover()
@@ -56,7 +54,7 @@ public class RangeController : MonoBehaviour
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Shot" && shooting)
+        if (collision.transform.tag == "Shot" && Input.GetButtonDown("Fire1") && !playerController.IsDead)
         {
             collision.transform.GetComponent<ShotBody>().ShotDestroy();
         }
