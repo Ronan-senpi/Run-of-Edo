@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
-public class RangeController : MonoBehaviour
+public class RangeController : Base
 {
     [SerializeField]
     protected float minScal = .2f;
@@ -16,23 +17,36 @@ public class RangeController : MonoBehaviour
     protected Transform tPlayer;
     protected PlayerController playerController;
     protected Vector3 originalScale;
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         tPlayer = GameObject.Find("Player").transform;
         playerController = tPlayer.GetComponent<PlayerController>();
         originalScale = transform.localScale;
     }
-    private void Update()
+    protected void Update()
     {
         transform.position = tPlayer.position;
-        if (!playerController.IsDead)
+        if (!playerController.IsDead && GameManager.IsStart)
         {
             if (Input.GetButtonDown("Fire1") && transform.localScale.x > minScal)
                 transform.localScale -= new Vector3(reduceScaleValue, reduceScaleValue);
-
             RangeRecover();
         }
     }
+
+    // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (Input.GetButtonDown("Fire1") && !playerController.IsDead)
+            if (collision.transform.tag == "Shot")
+            {
+                collision.transform.GetComponent<ShotBody>().ShotDestroy();
+            }
+    }
+
+    #region Custom stuff
 
     private void RangeRecover()
     {
@@ -50,14 +64,5 @@ public class RangeController : MonoBehaviour
         transform.localScale = Vector3.MoveTowards(transform.localScale, originalScale + vec, cooldown * Time.deltaTime);
 
     }
-
-    // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.transform.tag == "Shot" && Input.GetButtonDown("Fire1") && !playerController.IsDead)
-        {
-            collision.transform.GetComponent<ShotBody>().ShotDestroy();
-        }
-    }
-
+    #endregion
 }

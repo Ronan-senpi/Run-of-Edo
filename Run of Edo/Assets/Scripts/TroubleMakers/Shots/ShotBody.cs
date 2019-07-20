@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class ShotBody : MonoBehaviour, Destroyable, Shot
 {
@@ -12,6 +13,7 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
     public virtual void ShotDestroy()
     {
         ExitDestroy();
+        CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, .1f);
     }
 
 
