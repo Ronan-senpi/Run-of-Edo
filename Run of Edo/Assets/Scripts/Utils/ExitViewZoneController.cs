@@ -18,11 +18,14 @@ public class ExitViewZoneController : MonoBehaviour
         if (dest != null)
         {
             dest.ExitDestroy();
-
+        }
+        else if (collision.GetComponent<PlayerController>() != null)
+        {
+            collision.GetComponent<PlayerController>().Dead();
         }
         else
         {
-           // Destroy(collision.gameObject);
+            // Destroy(collision.gameObject);
         }
     }
 

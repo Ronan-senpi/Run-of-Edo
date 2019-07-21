@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour, IManager
     private void Awake()
     {
         gameSpeedOld = gameSpeed;
-        //gameSpeed = 0;
+        //StopGame();
         playerGo = GameObject.Find("Player");
         if (playerGo != null)
         {
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour, IManager
     void Update()
     {
         //TODO : REMOVE FOR RELEASE !!
-        if (forceStart)
+        if (forceStart && !playerController.IsDead)
         {
             StartGame();
         }
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour, IManager
     {
         //Pas fou mais fait le taff pour le moment
         gameSpeed = 0;
-        Debug.Log("IsStart : " + IsStart);
     }
 
     public void StartGame()
