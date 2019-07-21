@@ -280,4 +280,4 @@ MonoBehaviour:
   minScal: 0.2
   reduceScaleValue: 0.2
   cooldown: 1
-  rangeModifier: 0.2
+  rangeModifier: 0.5
