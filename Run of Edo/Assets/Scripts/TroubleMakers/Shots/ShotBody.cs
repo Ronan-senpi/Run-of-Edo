@@ -12,8 +12,9 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
 
     public virtual void ShotDestroy()
     {
+        GetComponent<Collider2D>().enabled = false;
+        CameraShaker.Instance.ShakeOnce(6f, 6f, .11f, .11f);
         ExitDestroy();
-        CameraShaker.Instance.ShakeOnce(4f, 4f, .1f, .1f);
     }
 
 

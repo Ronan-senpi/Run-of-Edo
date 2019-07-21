@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour, IManager
     private void Awake()
     {
         gameSpeedOld = gameSpeed;
-        StopGame();
-        //gameSpeed = 0;
+        //StopGame();
         playerGo = GameObject.Find("Player");
         if (playerGo != null)
         {
