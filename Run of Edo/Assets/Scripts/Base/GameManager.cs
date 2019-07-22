@@ -9,27 +9,18 @@ public class GameManager : MonoBehaviour, IManager
     //TODO : REMOVE FOR RELEASE !!
     [SerializeField]
     protected bool forceStart = false;
-    [Header("Settings")]
     [SerializeField]
     protected float gameSpeed = 15;
 
-    [Header("Bonus")]
-    [SerializeField]
-    protected float SpeedUpDuration = 10f;
-    [SerializeField]
-    protected float SpeedUpRate = 1.5f;
     [Header("Managers")]
     [SerializeField]
-    protected PlatformManager PlatformManager;
-    public PlatformManager GetPlatformManager()
-    {
-        return PlatformManager;
-    }
+    protected PlatformManager platformManager;
+    public PlatformManager PlatformManager { get { return platformManager; } }
 
     [SerializeField]
-    protected ShotManager ShotManager;
+    protected ShotManager shotManager;
     [SerializeField]
-    protected BonusManager BonusManager;
+    protected BonusManager bonusManager;
 
     protected GameObject playerGo;
     protected PlayerController playerController;
@@ -125,10 +116,11 @@ public class GameManager : MonoBehaviour, IManager
 
     protected IEnumerator CSpeedUp()
     {
-        gameSpeed = gameSpeed * SpeedUpRate;
+        gameSpeed = gameSpeed * bonusManager.GetSpeedUpModifier();
         playerController.SpeedUp = true;
-        yield return new WaitForSeconds(SpeedUpDuration);
-        
+        yield return new WaitForSeconds(bonusManager.GetSpeedUpDuration());
+        platformManager.ReloadPlatform(playerController.transform.position);
+        shotManager.Clear();
         playerController.SpeedUp = false;
         gameSpeed = gameSpeedOld;
     }

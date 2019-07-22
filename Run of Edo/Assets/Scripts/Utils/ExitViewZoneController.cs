@@ -9,7 +9,7 @@ public class ExitViewZoneController : Base
     protected override void Awake()
     {
         base.Awake();
-        platformManager = GameManager.GetPlatformManager();
+        platformManager = GameManager.PlatformManager;
     }
 
     // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)

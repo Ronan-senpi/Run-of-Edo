@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed15586225b3eb448e5987d5ec5f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceStart: 0
   gameSpeed: 15
+  platformManager: {fileID: 0}
+  shotManager: {fileID: 0}
+  bonusManager: {fileID: 0}

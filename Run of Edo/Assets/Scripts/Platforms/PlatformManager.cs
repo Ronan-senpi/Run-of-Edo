@@ -35,7 +35,7 @@ public class PlatformManager : Base, IManager
     {
         return Random.Range(0, platforms.Length);
     }
-    
+
     protected Vector3 PositionModifier(Vector3 vector)
     {
         vector.y = YModifier(vector.y);
@@ -67,6 +67,14 @@ public class PlatformManager : Base, IManager
         }
     }
 
+    protected void Clear()
+    {
+        for (int i = 0; i < platformContainer.childCount; i++)
+        {
+            Destroy(platformContainer.GetChild(i).gameObject);
+        }
+    }
+
     public void AddPlatform()
     {
         Transform oldPlatform = platformContainer.GetChild(platformContainer.childCount - 1);
@@ -81,10 +89,19 @@ public class PlatformManager : Base, IManager
         GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], position, Quaternion.identity);
         newPlat.transform.parent = platformContainer;
     }
-
-    public void ReloadPlatform(Vector3 position)
+    /// <summary>
+    /// Remove all platforms and create new ones, the first platform be created under playerPosition.y-1
+    /// </summary>
+    /// <param name="playerPosition"></param>
+    public void ReloadPlatform(Vector3 playerPosition)
     {
-        AddPlatform(position);
+        Clear();
+        playerPosition.y -= 1;
+        if (playerPosition.y < minY)
+        {
+            playerPosition.y = minY;
+        }
+        AddPlatform(playerPosition);
         FillPlatformContainer();
     }
 }

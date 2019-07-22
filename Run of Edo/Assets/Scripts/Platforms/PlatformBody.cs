@@ -8,7 +8,7 @@ public class PlatformBody : Base, Destroyable
     protected override void Awake()
     {
         base.Awake();
-        platformManager = GameManager.GetPlatformManager();
+        platformManager = GameManager.PlatformManager;
     }
     public void ExitDestroy()
     {
