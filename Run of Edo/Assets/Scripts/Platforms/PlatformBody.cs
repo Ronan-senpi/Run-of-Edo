@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformBody : Base, Destroyable
+public class PlatformBody : BaseController, Destroyable
 {
     protected PlatformManager platformManager;
     protected override void Awake()

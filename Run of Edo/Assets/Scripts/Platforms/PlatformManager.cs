@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PlatformManager : Base, IManager
+public class PlatformManager : BaseController, IManager
 {
 
     [SerializeField]
@@ -28,24 +28,12 @@ public class PlatformManager : Base, IManager
     {
         base.Awake();
         platformContainer = transform.Find("PlatformContainer");
-        for (int i = 0; i < 5; i++)
-        {
-           AddPlatform();
-        }
+        FillPlatformContainer();
     }
 
     protected int RandIndexPlatform()
     {
         return Random.Range(0, platforms.Length);
-    }
-
-    public void AddPlatform()
-    {
-        Transform oldPlatform = platformContainer.GetChild(platformContainer.childCount - 1);
-        Transform endOldPlatform = oldPlatform.Find("End");
-
-        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
-        newPlat.transform.parent = platformContainer;
     }
     
     protected Vector3 PositionModifier(Vector3 vector)
@@ -70,5 +58,33 @@ public class PlatformManager : Base, IManager
         }
         y = (float)Math.Round(Random.Range(minY, LocalMaxY), 1);
         return y;
+    }
+    protected void FillPlatformContainer()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            AddPlatform();
+        }
+    }
+
+    public void AddPlatform()
+    {
+        Transform oldPlatform = platformContainer.GetChild(platformContainer.childCount - 1);
+        Transform endOldPlatform = oldPlatform.Find("End");
+
+        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
+        newPlat.transform.parent = platformContainer;
+    }
+
+    public void AddPlatform(Vector3 position)
+    {
+        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], position, Quaternion.identity);
+        newPlat.transform.parent = platformContainer;
+    }
+
+    public void ReloadPlatform(Vector3 position)
+    {
+        AddPlatform(position);
+        FillPlatformContainer();
     }
 }

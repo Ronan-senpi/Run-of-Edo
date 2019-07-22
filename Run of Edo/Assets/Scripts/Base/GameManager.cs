@@ -1,11 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IManager
 {
+
+    //TODO : REMOVE FOR RELEASE !!
+    [SerializeField]
+    protected bool forceStart = false;
+    [Header("Settings")]
     [SerializeField]
     protected float gameSpeed = 15;
+
+    [Header("Bonus")]
+    [SerializeField]
+    protected float SpeedUpDuration = 10f;
+    [SerializeField]
+    protected float SpeedUpRate = 1.5f;
+    
+    protected PlatformManager PlatformManager;
 
     protected GameObject playerGo;
     protected PlayerController playerController;
@@ -14,9 +28,7 @@ public class GameManager : MonoBehaviour, IManager
     protected float gameSpeedOld = 0;
     public bool IsStart { get { return gameSpeed > 0; } }
 
-    //TODO : REMOVE FOR RELEASE !!
-    [SerializeField]
-    protected bool forceStart = false;
+
 
     private void Awake()
     {
@@ -90,5 +102,27 @@ public class GameManager : MonoBehaviour, IManager
         gameSpeed = MaxSpeedOrigin;
         playerController.Hurt();
     }
+
+   // Bonus
+   /// <summary>
+   /// Augmente la vitesse de défilement du jeux,
+   /// le player est invincible
+   /// </summary>
+    public void SpeedUp()
+    {
+        StartCoroutine(CSpeedUp());
+    }
+
+    protected IEnumerator CSpeedUp()
+    {
+        gameSpeed = gameSpeed * SpeedUpRate;
+        playerController.SpeedUp = true;
+        yield return new WaitForSeconds(SpeedUpDuration);
+        
+        playerController.SpeedUp = false;
+        gameSpeed = gameSpeedOld;
+    }
+
+
 
 }

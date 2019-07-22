@@ -8,7 +8,7 @@ public class ExitViewZoneController : MonoBehaviour
     // Awake is called when the script instance is being loaded
     private void Awake()
     {
-        platformManager = Base.FindManager<PlatformManager>("PlatformManager");
+        platformManager = BaseController.FindManager<PlatformManager>("PlatformManager");
     }
 
     // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)

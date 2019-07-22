@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Base : MonoBehaviour
+public class BaseController : MonoBehaviour
 {
+    protected GameManager GameManager { get; set; }
+
+    protected virtual void Awake()
+    {
+        GameManager = FindManager<GameManager>("GameManager");
+    }
     public static T FindManager<T>(string name) where T : class, IManager
     {
         GameObject tmpManager = GameObject.Find(name);

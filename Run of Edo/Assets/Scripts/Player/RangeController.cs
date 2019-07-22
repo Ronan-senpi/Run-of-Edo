@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class RangeController : Base
+public class RangeController : BaseController
 {
     [SerializeField]
     protected float minScal = .2f;
