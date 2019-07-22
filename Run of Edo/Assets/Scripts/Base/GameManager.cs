@@ -18,8 +18,18 @@ public class GameManager : MonoBehaviour, IManager
     protected float SpeedUpDuration = 10f;
     [SerializeField]
     protected float SpeedUpRate = 1.5f;
-    
+    [Header("Managers")]
+    [SerializeField]
     protected PlatformManager PlatformManager;
+    public PlatformManager GetPlatformManager()
+    {
+        return PlatformManager;
+    }
+
+    [SerializeField]
+    protected ShotManager ShotManager;
+    [SerializeField]
+    protected BonusManager BonusManager;
 
     protected GameObject playerGo;
     protected PlayerController playerController;

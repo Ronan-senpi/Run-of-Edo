@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformBody : BaseController, Destroyable
+public class PlatformBody : Base, Destroyable
 {
     protected PlatformManager platformManager;
     protected override void Awake()
     {
         base.Awake();
-        platformManager = FindManager<PlatformManager>("PlatformManager");
+        platformManager = GameManager.GetPlatformManager();
     }
     public void ExitDestroy()
     {

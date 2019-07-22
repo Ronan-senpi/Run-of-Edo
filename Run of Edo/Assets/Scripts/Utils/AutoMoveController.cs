@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoMoveController : BaseController
+public class AutoMoveController : Base
 {
     [SerializeField]
     protected bool enableAutoMove = true;

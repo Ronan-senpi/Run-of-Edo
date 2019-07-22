@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PlatformManager : BaseController, IManager
+public class PlatformManager : Base, IManager
 {
 
     [SerializeField]

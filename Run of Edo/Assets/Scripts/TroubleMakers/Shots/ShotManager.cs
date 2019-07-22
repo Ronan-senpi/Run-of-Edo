@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotManager : BaseController, IManager
+public class ShotManager : Base, IManager
 {
     [SerializeField]
     protected GameObject[] shots;
