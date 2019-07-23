@@ -22,6 +22,26 @@ public class BonusManager : Base, IManager
         return speedUpModifier;
     }
 
+    [Header("Range up")]
+    [SerializeField]
+    protected float rangeUpSpawnRate = 1.5f;
+
+    [SerializeField]
+    protected float rangeUpDuration = 10f;
+    public float GetRangeUpDuration()
+    {
+        return speedUpDuration;
+    }
+
+    [SerializeField]
+    protected float rangeUpModifier = 1.5f;
+    public float GetRangepModifier()
+    {
+        return speedUpModifier;
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {

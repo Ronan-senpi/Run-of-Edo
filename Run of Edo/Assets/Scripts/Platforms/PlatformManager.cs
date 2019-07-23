@@ -61,7 +61,7 @@ public class PlatformManager : Base, IManager
     }
     protected void FillPlatformContainer()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5 - (platformContainer.childCount > 5 ? 5 : platformContainer.childCount); i++)
         {
             AddPlatform();
         }
