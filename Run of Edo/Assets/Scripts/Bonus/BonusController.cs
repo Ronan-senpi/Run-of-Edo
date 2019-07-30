@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// PlayerScript requires the GameObject to have a Collider component
+[RequireComponent(typeof(Collider2D))]
+// PlayerScript requires the GameObject to have a SpriteRenderer component
+[RequireComponent(typeof(SpriteRenderer))]
 public abstract class BonusController : AutoMoveController, Destroyable
 {
     public void ExitDestroy()

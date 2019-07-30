@@ -40,8 +40,26 @@ public class BonusManager : Base, IManager
         return speedUpModifier;
     }
 
+    [Header("Auto Range")]
+    [SerializeField]
+    protected float autoRangeSpawnRate = 1.5f;
 
+    [SerializeField]
+    protected float autoRangeDuration = 10f;
+    public float GetAutoRangeDuration()
+    {
+        return autoRangeDuration;
+    }
 
+    [SerializeField]
+    protected float autoRangeModifier = 1.5f;
+    public float GetAutoRangeModifier()
+    {
+        return autoRangeModifier;
+    }
+
+    
+    public bool IsAutoRange { get; set; }
     // Start is called before the first frame update
     void Start()
     {

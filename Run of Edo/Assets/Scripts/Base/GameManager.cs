@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour, IManager
 
     [SerializeField]
     protected BonusManager bonusManager;
-    
+    public BonusManager BonusManager { get { return bonusManager; } }
+
+
     protected float StartSince = 0;
 
     protected float gameSpeedOld = 0;
@@ -97,16 +99,12 @@ public class GameManager : MonoBehaviour, IManager
         Player.Controller.Hurt();
     }
 
-   // Bonus
+    // Bonus
 
-   /// <summary>
-   /// Augmente la vitesse de défilement du jeux,
-   /// le player est invincible
-   /// </summary>
-    public void SpeedUp()
-    {
-        StartCoroutine(CSpeedUp());
-    }
+    /// <summary>
+    /// Augmente la vitesse de défilement du jeux,
+    /// le player est invincible
+    /// </summary>
     protected IEnumerator CSpeedUp()
     {
         gameSpeed = gameSpeed * bonusManager.GetSpeedUpModifier();
@@ -123,4 +121,9 @@ public class GameManager : MonoBehaviour, IManager
         StartCoroutine(Player.Range.RangeUp(bonusManager.GetRangeUpDuration(), bonusManager.GetRangepModifier()));
     }
 
+    public void AutoRange()
+    {
+        bonusManager.IsAutoRange = true;
+        StartCoroutine(Player.Range.RangeUp(bonusManager.GetAutoRangeDuration(), bonusManager.GetAutoRangeModifier()));
+    }
 }

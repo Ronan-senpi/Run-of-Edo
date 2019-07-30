@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpeedUpController : BonusController
+public class AutoRangeController : BonusController
 {
     // OnTriggerEnter2D is called when the Collider2D other enters the trigger (2D physics only)
     protected override void OnTriggerEnter2D(Collider2D collision)
