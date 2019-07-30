@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BonusManager : Base, IManager
 {
+
+    #region BonusInit
     [Header("Speed up")]
     [SerializeField]
     protected float speedUpSpawnRate = 1.5f;
@@ -57,8 +60,10 @@ public class BonusManager : Base, IManager
     {
         return autoRangeModifier;
     }
+    #endregion BonusInit
 
-    
+    [SerializeField]
+    protected GameObject[] Bonus;
     public bool IsAutoRange { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -68,6 +73,14 @@ public class BonusManager : Base, IManager
 
     // Update is called once per frame
     void Update()
+    {
+
+    }
+
+    /// <summary>
+    /// Intanciate Bonus
+    /// </summary>
+    public  void SetBonus()
     {
 
     }
