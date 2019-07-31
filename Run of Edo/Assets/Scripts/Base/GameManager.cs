@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour, IManager
     [SerializeField]
     protected bool forceStart = false;
     [SerializeField]
+    [Range(0,50)]
     protected float gameSpeed = 15;
 
     [Header("Managers")]

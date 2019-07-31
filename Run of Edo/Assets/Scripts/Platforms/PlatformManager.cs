@@ -82,7 +82,7 @@ public class PlatformManager : Base, IManager
 
         GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
         newPlat.transform.parent = platformContainer;
-        GameManager.BonusManager.SetBonus();
+        GameManager.BonusManager.SetBonus(newPlat.transform.Find("Body").transform.position);
     }
 
     public void AddPlatform(Vector3 position)
