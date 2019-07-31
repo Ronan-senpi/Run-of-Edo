@@ -16,9 +16,33 @@ public class PlayerController : PhysicsObject
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
 
-
+    //States
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
+    //Bonus
+    private bool speedUp;
+    public bool SpeedUp
+    {
+        get
+        {
+            return speedUp;
+        }
+        set
+        {
+            speedUp = value;
+            //animator.SetBool("speedUp", value);
+            transform.GetComponent<Collider2D>().enabled = !value;
+
+            if (speedUp)
+            {
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+        }
+    }
 
     protected override void Awake()
     {
@@ -27,6 +51,7 @@ public class PlayerController : PhysicsObject
         //animator = GetComponent<Animator>();
 
     }
+
     protected override void Update()
     {
         if (!IsDead && GameManager.IsStart)
@@ -67,7 +92,6 @@ public class PlayerController : PhysicsObject
 
     }
 
-
     public void Jump(float jumpValue)
     {
         velocity.y = jumpValue;
@@ -78,10 +102,11 @@ public class PlayerController : PhysicsObject
     {
         this.IsDead = true;
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
-        GetComponent<Rigidbody2D>().constraints =  RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
         GameManager.StopGame();
     }
+
     public void Relive()
     {
         this.IsDead = false;
@@ -95,4 +120,5 @@ public class PlayerController : PhysicsObject
         IsHurt = !IsHurt;
         //animator.SetBool("Hurt", IsHurt);
     }
+
 }

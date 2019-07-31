@@ -15,7 +15,6 @@ public abstract class ObstacleController : Base
             Col.isTrigger = true;
         }
     }
-
     abstract protected void OnTriggerEnter2D(Collider2D collision);
 
 }

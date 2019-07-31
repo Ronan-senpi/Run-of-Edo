@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitViewZoneController : MonoBehaviour
+public class ExitViewZoneController : Base
 {
     PlatformManager platformManager;
     // Awake is called when the script instance is being loaded
-    private void Awake()
+    protected override void Awake()
     {
-        platformManager = Base.FindManager<PlatformManager>("PlatformManager");
+        base.Awake();
+        platformManager = GameManager.PlatformManager;
     }
 
     // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)

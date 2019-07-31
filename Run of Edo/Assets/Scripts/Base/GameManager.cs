@@ -1,37 +1,46 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IManager
 {
+
+    //TODO : REMOVE FOR RELEASE !!
     [SerializeField]
+    protected bool forceStart = false;
+    [SerializeField]
+    [Range(0,50)]
     protected float gameSpeed = 15;
 
-    protected GameObject playerGo;
-    protected PlayerController playerController;
+    [Header("Managers")]
+    [SerializeField]
+    protected PlayerManager playerManager;
+    public PlayerManager Player { get { return playerManager; } }
+
+    [SerializeField]
+    protected PlatformManager platformManager;
+    public PlatformManager PlatformManager { get { return platformManager; } }
+
+    [SerializeField]
+    protected ShotManager shotManager;
+
+    [SerializeField]
+    protected BonusManager bonusManager;
+    public BonusManager BonusManager { get { return bonusManager; } }
+
+
     protected float StartSince = 0;
 
     protected float gameSpeedOld = 0;
     public bool IsStart { get { return gameSpeed > 0; } }
 
-    //TODO : REMOVE FOR RELEASE !!
-    [SerializeField]
-    protected bool forceStart = false;
+
 
     private void Awake()
     {
         gameSpeedOld = gameSpeed;
         //StopGame();
-        playerGo = GameObject.Find("Player");
-        if (playerGo != null)
-        {
-            playerController = playerGo.GetComponent<PlayerController>();
-        }
-        else
-        {
-            Debug.Log("<color=Red>Aucun Player n'a pu être trouver dans la scene</color>");
-            Debug.Break();
-        }
     }
 
     // Use this for initialization
@@ -44,7 +53,7 @@ public class GameManager : MonoBehaviour, IManager
     void Update()
     {
         //TODO : REMOVE FOR RELEASE !!
-        if (forceStart && !playerController.IsDead)
+        if (forceStart && !Player.Controller.IsDead)
         {
             StartGame();
         }
@@ -69,15 +78,15 @@ public class GameManager : MonoBehaviour, IManager
 
     public void SlowDown(float speedDivider, float slowdownTime)
     {
-        if (playerController.IsHurt)
+        if (Player.Controller.IsHurt)
         {
-            playerController.Dead();
+            Player.Controller.Dead();
         }
         else
         {
             float MaxSpeedOrigin = gameSpeed;
             gameSpeed /= speedDivider;
-            playerController.Hurt();
+            Player.Controller.Hurt();
             //Lance une fonction coroutine
             StartCoroutine(RecoverySpeed(slowdownTime, MaxSpeedOrigin));
             Debug.Log("Aïe !! je vais a : " + gameSpeed + " au lieux de " + MaxSpeedOrigin);
@@ -88,7 +97,34 @@ public class GameManager : MonoBehaviour, IManager
         //Attends le nombre de seconde passer en paramètre 
         yield return new WaitForSeconds(slowdownTime);
         gameSpeed = MaxSpeedOrigin;
-        playerController.Hurt();
+        Player.Controller.Hurt();
     }
 
+    // Bonus
+
+    /// <summary>
+    /// Augmente la vitesse de défilement du jeux,
+    /// le player est invincible
+    /// </summary>
+    protected IEnumerator CSpeedUp()
+    {
+        gameSpeed = gameSpeed * bonusManager.GetSpeedUpModifier();
+        Player.Controller.SpeedUp = true;
+        yield return new WaitForSeconds(bonusManager.GetSpeedUpDuration());
+        platformManager.ReloadPlatform(Player.Controller.transform.position);
+        shotManager.Clear();
+        Player.Controller.SpeedUp = false;
+        gameSpeed = gameSpeedOld;
+    }
+
+    public void RangeUp()
+    {
+        StartCoroutine(Player.Range.RangeUp(bonusManager.GetRangeUpDuration(), bonusManager.GetRangepModifier()));
+    }
+
+    public void AutoRange()
+    {
+        bonusManager.IsAutoRange = true;
+        StartCoroutine(Player.Range.RangeUp(bonusManager.GetAutoRangeDuration(), bonusManager.GetAutoRangeModifier()));
+    }
 }

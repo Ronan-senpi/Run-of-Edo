@@ -28,10 +28,7 @@ public class PlatformManager : Base, IManager
     {
         base.Awake();
         platformContainer = transform.Find("PlatformContainer");
-        for (int i = 0; i < 5; i++)
-        {
-           AddPlatform();
-        }
+        FillPlatformContainer();
     }
 
     protected int RandIndexPlatform()
@@ -39,15 +36,6 @@ public class PlatformManager : Base, IManager
         return Random.Range(0, platforms.Length);
     }
 
-    public void AddPlatform()
-    {
-        Transform oldPlatform = platformContainer.GetChild(platformContainer.childCount - 1);
-        Transform endOldPlatform = oldPlatform.Find("End");
-
-        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
-        newPlat.transform.parent = platformContainer;
-    }
-    
     protected Vector3 PositionModifier(Vector3 vector)
     {
         vector.y = YModifier(vector.y);
@@ -70,5 +58,51 @@ public class PlatformManager : Base, IManager
         }
         y = (float)Math.Round(Random.Range(minY, LocalMaxY), 1);
         return y;
+    }
+    protected void FillPlatformContainer()
+    {
+        for (int i = 0; i < 5 - (platformContainer.childCount > 5 ? 5 : platformContainer.childCount); i++)
+        {
+            AddPlatform();
+        }
+    }
+
+    protected void Clear()
+    {
+        for (int i = 0; i < platformContainer.childCount; i++)
+        {
+            Destroy(platformContainer.GetChild(i).gameObject);
+        }
+    }
+
+    public void AddPlatform()
+    {
+        Transform oldPlatform = platformContainer.GetChild(platformContainer.childCount - 1);
+        Transform endOldPlatform = oldPlatform.Find("End");
+
+        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
+        newPlat.transform.parent = platformContainer;
+        GameManager.BonusManager.SetBonus(newPlat.transform.Find("Body").transform.position);
+    }
+
+    public void AddPlatform(Vector3 position)
+    {
+        GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], position, Quaternion.identity);
+        newPlat.transform.parent = platformContainer;
+    }
+    /// <summary>
+    /// Remove all platforms and create new ones, the first platform be created under playerPosition.y-1
+    /// </summary>
+    /// <param name="playerPosition"></param>
+    public void ReloadPlatform(Vector3 playerPosition)
+    {
+        Clear();
+        playerPosition.y -= 1;
+        if (playerPosition.y < minY)
+        {
+            playerPosition.y = minY;
+        }
+        AddPlatform(playerPosition);
+        FillPlatformContainer();
     }
 }
