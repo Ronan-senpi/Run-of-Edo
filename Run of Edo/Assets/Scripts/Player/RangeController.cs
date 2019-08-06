@@ -22,7 +22,7 @@ public class RangeController : Base
     protected override void Awake()
     {
         base.Awake();
-        tPlayer = GameObject.Find("Player").transform;
+        tPlayer = GameObject.Find("PlayerSub").transform;
         playerController = tPlayer.GetComponent<PlayerController>();
         originalScale = transform.localScale;
     }
