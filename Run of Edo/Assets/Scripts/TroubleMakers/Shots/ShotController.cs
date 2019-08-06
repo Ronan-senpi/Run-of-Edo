@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class ShotController : AutoMoveController
 {
+    public void LocalSpeedModifier(float value)
+    {
+        Debug.Log(value);
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class RangeController : Base
+public class RangeController : PlayerFollower
 {
     [SerializeField]
     protected float minScal = .2f;
@@ -13,8 +13,7 @@ public class RangeController : Base
     protected float cooldown = 1.5f;
     [SerializeField]
     protected float rangeModifier = 09f;
-
-    protected Transform tPlayer;
+    
     protected PlayerController playerController;
     protected Vector3 originalScale;
     
@@ -22,12 +21,12 @@ public class RangeController : Base
     protected override void Awake()
     {
         base.Awake();
-        tPlayer = GameObject.Find("PlayerSub").transform;
         playerController = tPlayer.GetComponent<PlayerController>();
         originalScale = transform.localScale;
     }
-    protected void Update()
+    protected override void Update()
     {
+        base.Update();
         transform.position = tPlayer.position;
         if (!playerController.IsDead && GameManager.IsStart)
         {
