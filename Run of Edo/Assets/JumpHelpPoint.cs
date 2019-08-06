@@ -25,7 +25,6 @@ public class JumpHelpPoint : MonoBehaviour
             {
                 Vector3 newPosition = new Vector3(collision.transform.position.x, (transform.parent.transform.position.y + 0.1f + playerbounds.size.y / 2f), collision.transform.position.x);
                 collision.transform.position = newPosition;
-                Debug.Log("teleportation");
             }
 
         }
