@@ -15,7 +15,7 @@ public class ShotManager : Base, IManager
     protected override void Awake()
     {
         base.Awake();
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = GameObject.Find("PlayerSub").GetComponent<PlayerController>();
     }
     
     // Start is called just before any of the Update methods is called the first time

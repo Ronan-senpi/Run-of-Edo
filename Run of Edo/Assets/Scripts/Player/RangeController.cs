@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class RangeController : Base
+public class RangeController : PlayerFollower
 {
     [SerializeField]
     protected float minScal = .2f;
@@ -14,20 +14,19 @@ public class RangeController : Base
     [SerializeField]
     protected float rangeModifier = 09f;
 
-    protected Transform tPlayer;
     protected PlayerController playerController;
     protected Vector3 originalScale;
-    
+
 
     protected override void Awake()
     {
         base.Awake();
-        tPlayer = GameObject.Find("Player").transform;
         playerController = tPlayer.GetComponent<PlayerController>();
         originalScale = transform.localScale;
     }
-    protected void Update()
+    protected override void Update()
     {
+        base.Update();
         transform.position = tPlayer.position;
         if (!playerController.IsDead && GameManager.IsStart)
         {
@@ -43,15 +42,20 @@ public class RangeController : Base
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((Input.GetButtonDown("Fire1") && !playerController.IsDead) || GameManager.BonusManager.IsAutoRange)
+        if (!playerController.IsDead)
+        {
             if (collision.transform.tag == "Shot")
             {
-                if (GameManager.BonusManager.IsAutoRange)
+                if (Input.GetButtonDown("Fire1") || GameManager.BonusManager.IsAutoRange)
                 {
-                    RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+                    if (GameManager.BonusManager.IsAutoRange)
+                    {
+                        RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+                    }
+                    collision.transform.GetComponent<ShotBody>().ShotDestroy();
                 }
-                collision.transform.GetComponent<ShotBody>().ShotDestroy();
             }
+        }
     }
 
     #region Custom stuff
