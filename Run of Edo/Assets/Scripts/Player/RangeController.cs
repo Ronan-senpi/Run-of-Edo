@@ -13,10 +13,10 @@ public class RangeController : PlayerFollower
     protected float cooldown = 1.5f;
     [SerializeField]
     protected float rangeModifier = 09f;
-    
+
     protected PlayerController playerController;
     protected Vector3 originalScale;
-    
+
 
     protected override void Awake()
     {
@@ -42,15 +42,20 @@ public class RangeController : PlayerFollower
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if ((Input.GetButtonDown("Fire1") && !playerController.IsDead) || GameManager.BonusManager.IsAutoRange)
+        if (!playerController.IsDead)
+        {
             if (collision.transform.tag == "Shot")
             {
-                if (GameManager.BonusManager.IsAutoRange)
+                if (Input.GetButtonDown("Fire1") || GameManager.BonusManager.IsAutoRange)
                 {
-                    RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+                    if (GameManager.BonusManager.IsAutoRange)
+                    {
+                        RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+                    }
+                    collision.transform.GetComponent<ShotBody>().ShotDestroy();
                 }
-                collision.transform.GetComponent<ShotBody>().ShotDestroy();
             }
+        }
     }
 
     #region Custom stuff

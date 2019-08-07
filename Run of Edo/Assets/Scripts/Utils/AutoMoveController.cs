@@ -20,5 +20,6 @@ public class AutoMoveController : Base
     {
         if (enableAutoMove && GameManager.IsStart)
             transform.position += Vector3.left * (GameManager.GetSpeed() * localSpeedModifier) * Time.deltaTime;
+        Debug.Log(name + " : " + (GameManager.GetSpeed() * localSpeedModifier));
     }
 }
