@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-
+    protected virtual void Start()
+    {
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
