@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour, IManager
     [Range(0,50)]
     protected float gameSpeed = 15;
 
+    [Header("Menus")]
+
+    [SerializeField]
+    protected MainMenuManager menuManager;
+
     [Header("Managers")]
     [SerializeField]
     protected PlayerManager playerManager;
@@ -57,6 +62,12 @@ public class GameManager : MonoBehaviour, IManager
         {
             StartGame();
         }
+    }
+
+    public void EndGame()
+    {
+        StopGame();
+        menuManager.EndGame();
     }
 
     public void StopGame()

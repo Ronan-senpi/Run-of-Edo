@@ -16,8 +16,7 @@ public class Base : MonoBehaviour
         }
         else
         {
-            Debug.Log("<color=Red>Aucun " + name + " n'a pu être trouver dans la scene</color>");
-            Debug.Break();
+            Debug.Log("<color=Red>Aucun GameManager n'a pu être trouver dans la scene</color>");
         }
     }
 }
