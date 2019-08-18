@@ -104,7 +104,8 @@ public class PlayerController : PhysicsObject
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
-        GameManager.StopGame();
+        GameManager.EndGame();
+
     }
 
     public void Relive()
