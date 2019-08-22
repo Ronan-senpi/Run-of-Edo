@@ -17,7 +17,18 @@ public class RangeController : PlayerFollower
     protected PlayerController playerController;
     protected Vector3 originalScale;
 
+    [SerializeField]
+    protected TapController AttackBtn;
 
+    protected ShotBody ShotInRange;
+
+    public bool Attacking
+    {
+        get
+        {
+            return /*Input.GetButtonDown("Fire1") ||*/ AttackBtn.IsPressed;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -30,32 +41,47 @@ public class RangeController : PlayerFollower
         transform.position = tPlayer.position;
         if (!playerController.IsDead && GameManager.IsStart)
         {
+            if (ShotInRange != null && (Attacking || GameManager.BonusManager.IsAutoRange))
+            {
+                ShotInRange.ShotDestroy();
+                RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+
+            }
             RangeReducer(reduceScaleValue);
             RangeRecover();
         }
     }
     protected void RangeReducer(float modifier)
     {
-        if (Input.GetButtonDown("Fire1") && transform.localScale.x > minScal)
+        if (Attacking && transform.localScale.x > minScal)
             transform.localScale -= new Vector3(modifier, modifier);
     }
     // OnTriggerStay2D is called once per frame for every Collider2D other that is touching the trigger (2D physics only)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!playerController.IsDead)
+
+        if (collision.transform.tag == "Shot")
         {
-            if (collision.transform.tag == "Shot")
-            {
-                if (Input.GetButtonDown("Fire1") || GameManager.BonusManager.IsAutoRange)
-                {
-                    if (GameManager.BonusManager.IsAutoRange)
-                    {
-                        RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
-                    }
-                    collision.transform.GetComponent<ShotBody>().ShotDestroy();
-                }
-            }
+            ShotInRange = collision.transform.GetComponent<ShotBody>();
+            //if (Attacking || GameManager.BonusManager.IsAutoRange)
+            //{
+            //    if (GameManager.BonusManager.IsAutoRange)
+            //    {
+            //        RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
+            //    }
+
+            //}
         }
+
+    }
+
+    // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Shot")
+            if (ShotInRange == collision.transform.GetComponent<ShotBody>())
+                ShotInRange = null;
+
     }
 
     #region Custom stuff

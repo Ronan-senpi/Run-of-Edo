@@ -13,12 +13,22 @@ public class PlayerController : PhysicsObject
     protected float jumpTakeOffSpeed = 8;
     protected bool ForceAlive;
 
+    [SerializeField]
+    protected TapController JumpBtn;
+
     protected SpriteRenderer spriteRenderer;
     //protected Animator animator;
-
+    
     //States
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
+
+    public bool Jumping {
+        get
+        {
+            return Input.GetButtonDown("Jump") || JumpBtn.IsPressed;
+        }
+    }
     //Bonus
     private bool speedUp;
     public bool SpeedUp
@@ -54,6 +64,8 @@ public class PlayerController : PhysicsObject
 
     protected override void Update()
     {
+        //Debug.Log("Input : " + Input.GetButtonDown("Jump"));
+        //Debug.Log("Btn : " + JumpBtn.IsPressed);
         if (!IsDead && GameManager.IsStart)
         {
             base.Update();
@@ -69,11 +81,11 @@ public class PlayerController : PhysicsObject
         Vector2 move = Vector2.zero;
 
         move.x = Vector2.right.x;
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Jumping && isGrounded)
         {
             Jump(jumpTakeOffSpeed);
         }
-        else if (Input.GetButtonUp("Jump"))
+        else if (Jumping)
         {
             if (velocity.y > 0)
             {

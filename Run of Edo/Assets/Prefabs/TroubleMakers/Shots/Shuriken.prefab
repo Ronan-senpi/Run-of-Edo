@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableAutoMove: 1
-  localSpeedModifier: 1
+  localSpeedModifier: 0.5
+  MinLocalModifie: 0.7
 --- !u!1 &6181437498219264391
 GameObject:
   m_ObjectHideFlags: 0
