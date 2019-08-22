@@ -11,8 +11,25 @@ public class TapController : MonoBehaviour
     protected Transform text;
     protected Transform image;
 
+
+
+    private bool isPressed;
+    public bool IsPressed
+    {
+        get
+        {
+            bool value = isPressed;
+            IsPressed = false;
+            return value;
+        }
+        set
+        {
+            isPressed = value;
+        }
+    }
+
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         text = transform.Find("Text");
         image = transform.Find("Image");
@@ -20,6 +37,7 @@ public class TapController : MonoBehaviour
         btn.onClick.AddListener(() => { SetActiveTapIndication(false); });
 
     }
+
 
     /// <summary>
     /// ActivatesDeactivates Text and Image GameObject, depending on the given true or false/ value.
@@ -33,4 +51,14 @@ public class TapController : MonoBehaviour
         text.gameObject.SetActive(value);
         image.gameObject.SetActive(value);
     }
+
+    public void Pressed()
+    {
+        IsPressed = true;
+    }
+    public void Released()
+    {
+        IsPressed = false;
+    }
+
 }
