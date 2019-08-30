@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour, IManager
     public BonusManager BonusManager { get { return bonusManager; } }
 
 
+    public float Score { get; protected set; }
     protected float StartSince = 0;
 
     protected float gameSpeedOld = 0;
@@ -51,12 +52,17 @@ public class GameManager : MonoBehaviour, IManager
     // Use this for initialization
     void Start()
     {
+        Score = 0f;
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameSpeed >= 1)
+        {
+            Score += Time.deltaTime / gameSpeed*3;
+        }
         //TODO : REMOVE FOR RELEASE !!
         if (forceStart && !Player.Controller.IsDead)
         {

@@ -26,7 +26,7 @@ public class RangeController : PlayerFollower
     {
         get
         {
-            return /*Input.GetButtonDown("Fire1") ||*/ AttackBtn.IsPressed;
+            return Input.GetButtonDown("Fire1") || AttackBtn.IsPressed;
         }
     }
     protected override void Awake()
@@ -41,11 +41,13 @@ public class RangeController : PlayerFollower
         transform.position = tPlayer.position;
         if (!playerController.IsDead && GameManager.IsStart)
         {
-            if (ShotInRange != null && (Attacking || GameManager.BonusManager.IsAutoRange))
+            if (Attacking || GameManager.BonusManager.IsAutoRange)
             {
-                ShotInRange.ShotDestroy();
+                if (ShotInRange != null)
+                {
+                    ShotInRange.ShotDestroy();
+                }
                 RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
-
             }
             RangeReducer(reduceScaleValue);
             RangeRecover();
