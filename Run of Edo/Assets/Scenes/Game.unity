@@ -1393,7 +1393,7 @@ PrefabInstance:
     - target: {fileID: 3748025610411460663, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4950010210076561525, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
@@ -1413,7 +1413,7 @@ PrefabInstance:
     - target: {fileID: 2858399815770345258, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4950010209625544243, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
@@ -1907,6 +1907,16 @@ PrefabInstance:
       propertyPath: JumpBtn
       value: 
       objectReference: {fileID: 1914176420}
+    - target: {fileID: 5966443802735423018, guid: 932e6180f13a25d469ac5c2d92aecbb2,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5966443802735423018, guid: 932e6180f13a25d469ac5c2d92aecbb2,
+        type: 3}
+      propertyPath: jumpTakeOffSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5966443803081580571, guid: 932e6180f13a25d469ac5c2d92aecbb2,
         type: 3}
       propertyPath: AttackBtn

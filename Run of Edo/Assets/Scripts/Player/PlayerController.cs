@@ -92,6 +92,7 @@ public class PlayerController : PhysicsObject
                 velocity.y = velocity.y * .25f;
             }
         }
+
         bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
         if (flipSprite)
         {
