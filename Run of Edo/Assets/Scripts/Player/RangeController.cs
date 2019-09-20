@@ -18,7 +18,7 @@ public class RangeController : PlayerFollower
     protected Vector3 originalScale;
 
     [SerializeField]
-    protected TapController AttackBtn;
+    protected AttackController AttackBtn;
 
     protected ShotBody ShotInRange;
 

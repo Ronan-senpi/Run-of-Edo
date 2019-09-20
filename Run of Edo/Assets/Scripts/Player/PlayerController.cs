@@ -29,8 +29,10 @@ public class PlayerController : PhysicsObject
             return Input.GetButtonDown("Jump") || JumpBtn.IsPressed;
         }
     }
+    public bool jumped;
     //Bonus
     private bool speedUp;
+
     public bool SpeedUp
     {
         get
@@ -68,6 +70,7 @@ public class PlayerController : PhysicsObject
         //Debug.Log("Btn : " + JumpBtn.IsPressed);
         if (!IsDead && GameManager.IsStart)
         {
+            jumped = Jumping;
             base.Update();
         }
         if (ForceAlive)
@@ -80,18 +83,20 @@ public class PlayerController : PhysicsObject
     {
         Vector2 move = Vector2.zero;
 
-        move.x = Vector2.right.x;
-        if (Jumping && isGrounded)
+        if (jumped && isGrounded && !JumpBtn.NeedToReleaseJump)
         {
+            JumpBtn.NeedToReleaseJump = true;
             Jump(jumpTakeOffSpeed);
         }
-        else if (Jumping)
+        else if (jumped)
         {
-            if (velocity.y > 0)
-            {
-                velocity.y = velocity.y * .25f;
-            }
+            //if (velocity.y > 0)
+            //{
+            //    velocity.y = velocity.y * .25f;
+            //}
+            //jumped = false;
         }
+
         bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
         if (flipSprite)
         {

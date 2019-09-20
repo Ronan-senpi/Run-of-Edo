@@ -11,7 +11,9 @@ public class TapController : MonoBehaviour
     protected Transform text;
     protected Transform image;
 
-
+    protected virtual void DoSomthingInternal()
+    {
+    }
 
     private bool isPressed;
     public bool IsPressed
@@ -19,7 +21,8 @@ public class TapController : MonoBehaviour
         get
         {
             bool value = isPressed;
-            IsPressed = false;
+            DoSomthingInternal();
+            //IsPressed = false;
             return value;
         }
         set
@@ -27,6 +30,8 @@ public class TapController : MonoBehaviour
             isPressed = value;
         }
     }
+
+    public bool NeedToReleaseJump { get; set; }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -59,6 +64,7 @@ public class TapController : MonoBehaviour
     public void Released()
     {
         IsPressed = false;
+        NeedToReleaseJump = false;
     }
 
 }
