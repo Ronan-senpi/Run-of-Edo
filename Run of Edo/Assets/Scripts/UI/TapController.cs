@@ -11,7 +11,9 @@ public class TapController : MonoBehaviour
     protected Transform text;
     protected Transform image;
 
-
+    protected virtual void DoSomthingInternal()
+    {
+    }
 
     private bool isPressed;
     public bool IsPressed
@@ -19,6 +21,7 @@ public class TapController : MonoBehaviour
         get
         {
             bool value = isPressed;
+            DoSomthingInternal();
             //IsPressed = false;
             return value;
         }

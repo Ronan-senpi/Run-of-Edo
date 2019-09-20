@@ -654,7 +654,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1163894100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a138fffe8a76684a814515c64cc3113, type: 3}
+  m_Script: {fileID: 11500000, guid: fa24e5debb21ed64eb3a8d6aaaad9e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1201421471
@@ -1809,7 +1809,7 @@ PrefabInstance:
     - target: {fileID: 1893498123203910896, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Released
       objectReference: {fileID: 0}
     - target: {fileID: 1893498123203910896, guid: 497204c043943324cb3395d02ff148f3,
         type: 3}
