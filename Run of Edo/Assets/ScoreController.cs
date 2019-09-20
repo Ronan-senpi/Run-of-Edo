@@ -17,7 +17,7 @@ public class ScoreController : Base
     // Update is called once per frame
     void FixedUpdate()
     {
-        float formatedScore = GameManager.Score * 1000;
+        float formatedScore = GameManager.Score * 100;
         if (formatedScore > 99999999999)
         {
             formatedScore = 99999999999;
