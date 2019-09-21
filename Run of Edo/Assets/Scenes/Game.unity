@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 6364452178960937065, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
       propertyPath: enableAutoMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2110490955860313998, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
@@ -386,6 +386,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6364452178960937065, guid: a9d4642a2ab77794582d4b65ce2c6325,
+        type: 3}
+      propertyPath: enableAutoMove
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9d4642a2ab77794582d4b65ce2c6325, type: 3}
 --- !u!1001 &520630724
@@ -453,6 +458,11 @@ PrefabInstance:
     - target: {fileID: 6364452178233321564, guid: a9d4642a2ab77794582d4b65ce2c6325,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6364452178960937065, guid: a9d4642a2ab77794582d4b65ce2c6325,
+        type: 3}
+      propertyPath: enableAutoMove
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -727,7 +737,7 @@ PrefabInstance:
     - target: {fileID: 6364452178960937065, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
       propertyPath: enableAutoMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2110490955860313998, guid: 07486195382e34b43876ab9f7cb46064,
         type: 3}
@@ -1262,7 +1272,7 @@ PrefabInstance:
     - target: {fileID: 8282641552322113260, guid: 78d590610d969954fb8e58d1ee42919c,
         type: 3}
       propertyPath: gameSpeed
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8282641552322113260, guid: 78d590610d969954fb8e58d1ee42919c,
         type: 3}
@@ -1356,7 +1366,7 @@ PrefabInstance:
     - target: {fileID: 1965117986696230626, guid: fe949006346011e449922a32ab3a0ee3,
         type: 3}
       propertyPath: enableAutoMove
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe949006346011e449922a32ab3a0ee3, type: 3}
