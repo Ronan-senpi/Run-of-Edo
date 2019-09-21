@@ -9,9 +9,23 @@ public class GameManager : MonoBehaviour, IManager
     //TODO : REMOVE FOR RELEASE !!
     [SerializeField]
     protected bool forceStart = false;
+
+    [Header("Game speed")]
     [SerializeField]
     [Range(0,50)]
-    protected float gameSpeed = 15;
+    protected float gameSpeed = 10;
+
+    [SerializeField]
+    protected float maxGameSpeed = 30;
+
+    [SerializeField]
+    protected float gameSpeedIncrement = 0.5f;
+
+    [SerializeField]
+    protected float IncrementGameSpeedEverySeconds = 10;
+
+    protected float period = 0.0f;
+    protected bool isMaxGameSpeed = false;
 
     [Header("Menus")]
 
@@ -59,6 +73,13 @@ public class GameManager : MonoBehaviour, IManager
     // Update is called once per frame
     void Update()
     {
+        if (period > IncrementGameSpeedEverySeconds && !isMaxGameSpeed)
+        {
+            SpeedUpGame();
+            period = 0.0f;
+        }
+        period += Time.deltaTime;
+
         if (gameSpeed >= 1)
         {
             Score += Time.deltaTime / gameSpeed*3;
@@ -67,6 +88,21 @@ public class GameManager : MonoBehaviour, IManager
         if (forceStart && !Player.Controller.IsDead)
         {
             StartGame();
+        }
+    }
+    
+    
+    protected void SpeedUpGame()
+    {
+        if (gameSpeed + gameSpeedIncrement > maxGameSpeed)
+        {
+            gameSpeed = maxGameSpeed;
+            isMaxGameSpeed = true;
+        }
+        else
+        {
+            gameSpeed += gameSpeedIncrement;
+            isMaxGameSpeed = false;
         }
     }
 
