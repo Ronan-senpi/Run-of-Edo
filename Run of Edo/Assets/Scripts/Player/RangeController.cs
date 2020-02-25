@@ -21,6 +21,8 @@ public class RangeController : PlayerFollower
     protected AttackController AttackBtn;
 
     protected ShotBody ShotInRange;
+    protected bool inAttackAnimation;
+
 
     public bool Attacking
     {
@@ -43,6 +45,7 @@ public class RangeController : PlayerFollower
         {
             if (Attacking || GameManager.BonusManager.IsAutoRange)
             {
+                AnimateAttack();
                 if (ShotInRange != null)
                 {
                     ShotInRange.ShotDestroy();
@@ -53,6 +56,25 @@ public class RangeController : PlayerFollower
             RangeRecover();
         }
     }
+
+    private void AnimateAttack()
+    {
+        this.inAttackAnimation = true;
+        try
+        {
+            if (this.inAttackAnimation)
+            {
+                Animator an = this.playerController.GetAnimator();
+                if (an != null)
+                    an.SetTrigger("Attack");
+            }
+        }
+        finally
+        {
+            this.inAttackAnimation = false;
+        }
+    }
+
     protected void RangeReducer(float modifier)
     {
         if (Attacking && transform.localScale.x > minScal)

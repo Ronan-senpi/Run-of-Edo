@@ -17,8 +17,12 @@ public class PlayerController : PhysicsObject
     protected TapController JumpBtn;
 
     protected SpriteRenderer spriteRenderer;
-    //protected Animator animator;
-    
+    protected Animator animator;
+    public Animator GetAnimator()
+    {
+        return this.animator;
+    }
+
     //States
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -59,7 +63,8 @@ public class PlayerController : PhysicsObject
     protected override void Awake()
     {
         base.Awake();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
         //animator = GetComponent<Animator>();
 
     }
@@ -104,7 +109,7 @@ public class PlayerController : PhysicsObject
         }
 
         //animator.SetBool("Grounded", isGrounded);
-        //animator.SetFloat("VelocityY", velocity.y);
+        animator.SetFloat("Jump", Mathf.Abs(velocity.y));
         TargetVelocity = move * maxSpeed;
 
     }
@@ -118,6 +123,7 @@ public class PlayerController : PhysicsObject
     public void Dead()
     {
         this.IsDead = true;
+        this.animator.SetBool("IsDead", true);
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
@@ -127,6 +133,7 @@ public class PlayerController : PhysicsObject
 
     public void Relive()
     {
+        this.animator.SetBool("IsDead", false);
         this.IsDead = false;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
@@ -136,7 +143,7 @@ public class PlayerController : PhysicsObject
     public void Hurt()
     {
         IsHurt = !IsHurt;
-        //animator.SetBool("Hurt", IsHurt);
+        animator.SetTrigger("Damage");
     }
 
 }
