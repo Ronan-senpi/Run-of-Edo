@@ -14,7 +14,6 @@ public class ShotController : AutoMoveController
         {
             value = MinLocalModifie;
         }
-        Debug.Log(value);
         localSpeedModifier = value;
     }
 }

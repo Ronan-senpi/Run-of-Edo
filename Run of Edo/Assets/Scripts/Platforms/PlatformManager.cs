@@ -26,6 +26,7 @@ public class PlatformManager : Base, IManager
 
     protected override void Awake()
     {
+
         base.Awake();
         platformContainer = transform.Find("PlatformContainer");
         FillPlatformContainer();
@@ -81,6 +82,7 @@ public class PlatformManager : Base, IManager
         Transform endOldPlatform = oldPlatform.Find("End");
 
         GameObject newPlat = Instantiate(platforms[RandIndexPlatform()], PositionModifier(endOldPlatform.position), Quaternion.identity);
+
         newPlat.transform.parent = platformContainer;
         GameManager.BonusManager.SetBonus(newPlat.transform.Find("Body").transform.position);
     }

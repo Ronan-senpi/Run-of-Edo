@@ -9,8 +9,24 @@ public class JumpHelpPoint : MonoBehaviour
     {
         if (collision.transform.name == "PlayerSub")
         {
-
+            float tmp =   collision.transform.position.y - transform.position.y;
+            Debug.Log(tmp);
+            this.RescurePlayer(collision.transform, tmp);
         }
+    }
+
+    protected bool RescurePlayer(Transform colTransform, float contactPointY)
+    {
+        Bounds playerbounds = colTransform.GetComponentInChildren<SpriteRenderer>().bounds;
+        float quarterSpriteY = playerbounds.size.y / 3;
+        if ((colTransform.position.y - transform.position.y) >= quarterSpriteY)
+        {
+            Vector3 newPosition = new Vector3(colTransform.position.x, (transform.position.y + 0.2f + playerbounds.size.y / 2f), colTransform.position.x);
+            colTransform.position = newPosition;
+            return true;
+        }
+
+        return false;
     }
 
     // OnCollisionEnter2D is called when this collider2D/rigidbody2D has begun touching another rigidbody2D/collider2D (2D physics only)
@@ -18,15 +34,9 @@ public class JumpHelpPoint : MonoBehaviour
     {
         if (collision.transform.name == "PlayerSub")
         {
+            Debug.Log("hi !");
             ContactPoint2D contact = collision.contacts[0];
-            Bounds playerbounds = collision.transform.GetComponent<SpriteRenderer>().bounds;
-            float quarterSpriteY = playerbounds.size.y / 3;
-            if (contact.point.y <= (collision.transform.position.y - quarterSpriteY))
-            {
-                Vector3 newPosition = new Vector3(collision.transform.position.x, (transform.parent.transform.position.y + 0.1f + playerbounds.size.y / 2f), collision.transform.position.x);
-                collision.transform.position = newPosition;
-            }
-
+            this.RescurePlayer(collision.transform, contact.point.y);
         }
     }
 }

@@ -46,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ProposBg
+    uniqueID: 1765753249
+    locked: 0
   - name: Player
     uniqueID: 277767265
     locked: 0
