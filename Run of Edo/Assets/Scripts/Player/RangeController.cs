@@ -45,10 +45,16 @@ public class RangeController : PlayerFollower
         {
             if (Attacking || GameManager.BonusManager.IsAutoRange)
             {
+                AudioManager am = FindObjectOfType<AudioManager>();
                 AnimateAttack();
                 if (ShotInRange != null)
                 {
                     ShotInRange.ShotDestroy();
+                    am.Play("AttackHit");
+                }
+                else
+                {
+                    am.Play("AttackNoHit");
                 }
                 RangeReducer(reduceScaleValue * GameManager.BonusManager.GetAutoRangeModifier());
             }

@@ -23,6 +23,8 @@ public class PlayerController : PhysicsObject
         return this.animator;
     }
 
+    protected AudioManager AudioManager { get; set; }
+
     //States
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
@@ -65,6 +67,7 @@ public class PlayerController : PhysicsObject
         base.Awake();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        AudioManager = FindObjectOfType<AudioManager>();
         //animator = GetComponent<Animator>();
 
     }
@@ -108,7 +111,6 @@ public class PlayerController : PhysicsObject
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 
-        //animator.SetBool("Grounded", isGrounded);
         animator.SetFloat("Jump", Mathf.Abs(velocity.y));
         TargetVelocity = move * maxSpeed;
 
