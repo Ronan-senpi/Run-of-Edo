@@ -29,6 +29,7 @@ public class ShotManager : Base, IManager
         yield return new WaitForSeconds(Random.Range(MinTimeShoot, MaxTimeShoot));
         Vector3 startPositionShot = playerController.transform.position;
         startPositionShot.x = transform.position.x;
+        startPositionShot.z = -5;
         if (GameManager.IsStart)
         {
             GameObject shot = Instantiate(shots[Random.Range(0, shots.Length)], startPositionShot, Quaternion.identity);

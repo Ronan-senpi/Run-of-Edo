@@ -55,3 +55,6 @@ TagManager:
   - name: Foreground
     uniqueID: 3477416601
     locked: 0
+  - name: Shot
+    uniqueID: 99942139
+    locked: 0
