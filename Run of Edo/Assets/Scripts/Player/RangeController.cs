@@ -23,6 +23,7 @@ public class RangeController : PlayerFollower
     protected ShotBody ShotInRange;
     protected bool inAttackAnimation;
 
+    AudioManager am;
 
     public bool Attacking
     {
@@ -37,6 +38,10 @@ public class RangeController : PlayerFollower
         playerController = tPlayer.GetComponent<PlayerController>();
         originalScale = transform.localScale;
     }
+    protected void Start()
+    {
+        am = FindObjectOfType<AudioManager>();
+    }
     protected override void Update()
     {
         base.Update();
@@ -45,12 +50,11 @@ public class RangeController : PlayerFollower
         {
             if (Attacking || GameManager.BonusManager.IsAutoRange)
             {
-                AudioManager am = FindObjectOfType<AudioManager>();
+                
                 AnimateAttack();
                 if (ShotInRange != null)
                 {
                     ShotInRange.ShotDestroy();
-                    am.Play("AttackHit");
                 }
                 else
                 {
@@ -93,6 +97,7 @@ public class RangeController : PlayerFollower
         if (collision.transform.tag == "Shot")
         {
             ShotInRange = collision.transform.GetComponent<ShotBody>();
+
             //if (Attacking || GameManager.BonusManager.IsAutoRange)
             //{
             //    if (GameManager.BonusManager.IsAutoRange)
@@ -135,26 +140,29 @@ public class RangeController : PlayerFollower
 
     public IEnumerator RangeUp(float duration, float modifier)
     {
-        Vector3 originalScale = this.originalScale;
-        this.originalScale *= modifier;
-        float minScal = this.minScal;
-        this.minScal *= modifier;
-        float reduceScaleValue = this.reduceScaleValue;
-        this.reduceScaleValue *= modifier;
-        float cooldown = this.cooldown;
-        this.cooldown = modifier;
-        float rangeModifier = this.rangeModifier;
-        this.rangeModifier *= modifier;
-        transform.localScale = this.originalScale;
+        if (GameManager.IsStart)
+        {
+            Vector3 originalScale = this.originalScale;
+            this.originalScale *= modifier;
+            float minScal = this.minScal;
+            this.minScal *= modifier;
+            float reduceScaleValue = this.reduceScaleValue;
+            this.reduceScaleValue *= modifier;
+            float cooldown = this.cooldown;
+            this.cooldown = modifier;
+            float rangeModifier = this.rangeModifier;
+            this.rangeModifier *= modifier;
+            transform.localScale = this.originalScale;
 
-        yield return new WaitForSeconds(duration);
-        this.originalScale = originalScale;
-        this.minScal = minScal;
-        this.reduceScaleValue = reduceScaleValue;
-        this.cooldown = cooldown;
-        this.rangeModifier = rangeModifier;
-        transform.localScale = this.originalScale;
-        GameManager.BonusManager.IsAutoRange = false;
+            yield return new WaitForSeconds(duration);
+            this.originalScale = originalScale;
+            this.minScal = minScal;
+            this.reduceScaleValue = reduceScaleValue;
+            this.cooldown = cooldown;
+            this.rangeModifier = rangeModifier;
+            transform.localScale = this.originalScale;
+            GameManager.BonusManager.IsAutoRange = false;
+        }
     }
     #endregion
 }

@@ -27,13 +27,16 @@ public class ShotManager : Base, IManager
     IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(MinTimeShoot, MaxTimeShoot));
-        Vector3 startPositionShot = playerController.transform.position;
-        startPositionShot.x = transform.position.x;
-        startPositionShot.z = -5;
         if (GameManager.IsStart)
         {
-            GameObject shot = Instantiate(shots[Random.Range(0, shots.Length)], startPositionShot, Quaternion.identity);
-            shot.transform.parent = transform;
+            Vector3 startPositionShot = playerController.transform.position;
+            startPositionShot.x = transform.position.x;
+            startPositionShot.z = -5;
+            if (GameManager.IsStart)
+            {
+                GameObject shot = Instantiate(shots[Random.Range(0, shots.Length)], startPositionShot, Quaternion.identity);
+                shot.transform.parent = transform;
+            }
         }
         StartCoroutine(Shoot());
     }

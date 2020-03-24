@@ -18,6 +18,17 @@ public class UnstoppableShotBody : ShotBody
         if (gameManager.BonusManager.IsAutoRange)
         {
             base.ShotDestroy();
+            return;
+        }
+
+    }
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            FindObjectOfType<AudioManager>().Play("Explosion");
+            gameManager.Player.Controller.Dead();
+            ExitDestroy();
         }
     }
 }

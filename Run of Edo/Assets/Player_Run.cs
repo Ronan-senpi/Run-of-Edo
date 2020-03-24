@@ -8,6 +8,7 @@ public class Player_Run : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         AudioManager am = FindObjectOfType<AudioManager>();
+        am.Play("JumpLanding");
         am.Play("RunWall");
 
     }

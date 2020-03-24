@@ -9,9 +9,13 @@ public class MainMenuManager : Base
     [SerializeField]
     protected GameObject EndGameMenu;
 
+    AudioManager am;
+
     protected virtual void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
+        am = FindObjectOfType<AudioManager>();
+
     }
     public void PlayGame()
     {
@@ -30,12 +34,15 @@ public class MainMenuManager : Base
 
     public void PauseGame()
     {
-        GameManager.StopGame();
+        am.StopAll();
+        am.Play("PauseIn");
+        GameManager.PauseGame();
     }
 
     public void ResumeGame()
     {
-        GameManager.StartGame();
+        am.Play("PauseOut");
+        GameManager.ResumeGame();
     }
 
     public void EndGame()

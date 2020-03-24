@@ -10,6 +10,7 @@ public class Player_Jump : StateMachineBehaviour
 
         AudioManager am = FindObjectOfType<AudioManager>();
         am.Stop("RunWall");
+        am.Play("Jump");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

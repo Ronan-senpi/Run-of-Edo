@@ -39,6 +39,12 @@ public class PlayerController : PhysicsObject
     //Bonus
     private bool speedUp;
 
+    protected override void Start()
+    {
+        base.Start();
+        AudioManager = FindObjectOfType<AudioManager>();
+    }
+
     public bool SpeedUp
     {
         get
@@ -67,7 +73,6 @@ public class PlayerController : PhysicsObject
         base.Awake();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-        AudioManager = FindObjectOfType<AudioManager>();
         //animator = GetComponent<Animator>();
 
     }
@@ -76,46 +81,79 @@ public class PlayerController : PhysicsObject
     {
         //Debug.Log("Input : " + Input.GetButtonDown("Jump"));
         //Debug.Log("Btn : " + JumpBtn.IsPressed);
-        if (!IsDead && GameManager.IsStart)
+        if (!IsDead)
         {
-            jumped = Jumping;
-            base.Update();
+            if (GameManager.IsStart)
+            {
+
+
+                jumped = Jumping;
+                base.Update();
+
+                lastPosition = gameObject.transform.position;
+            }
+            else
+            {
+
+                gameObject.transform.position = lastPosition;
+            }
         }
         if (ForceAlive)
         {
             Relive();
         }
     }
-
+    Vector3 lastPosition;
     protected override void ComputeVelocity()
     {
-        Vector2 move = Vector2.zero;
-
-        if (jumped && isGrounded && !JumpBtn.NeedToReleaseJump)
+        if (GameManager.IsStart)
         {
-            JumpBtn.NeedToReleaseJump = true;
-            Jump(jumpTakeOffSpeed);
-        }
-        else if (jumped)
-        {
-            //if (velocity.y > 0)
-            //{
-            //    velocity.y = velocity.y * .25f;
-            //}
-            //jumped = false;
-        }
+            Vector2 move = Vector2.zero;
 
-        bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
-        if (flipSprite)
-        {
-            spriteRenderer.flipX = !spriteRenderer.flipX;
-        }
+            if (jumped && isGrounded && !JumpBtn.NeedToReleaseJump)
+            {
+                JumpBtn.NeedToReleaseJump = true;
+                Jump(jumpTakeOffSpeed);
+            }
+            else if (jumped)
+            {
+                //if (velocity.y > 0)
+                //{
+                //    velocity.y = velocity.y * .25f;
+                //}
+                //jumped = false;
+            }
 
-        animator.SetFloat("Jump", Mathf.Abs(velocity.y));
-        TargetVelocity = move * maxSpeed;
+            bool flipSprite = (spriteRenderer.flipX ? move.x > 0.01f : move.x < -0.01f);
+            if (flipSprite)
+            {
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+            }
+
+            animator.SetFloat("Jump", Mathf.Abs(velocity.y));
+            TargetVelocity = move * maxSpeed;
+        }else
+        {
+        }
 
     }
+    public void Freeze()
+    {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
+    }
+    public void Unfreeze()
+    {
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    public void StopAnimation()
+    {
+        GetComponentInChildren<Animator>().enabled = false;
+    }
+    public void StartAnimation()
+    {
+        GetComponentInChildren<Animator>().enabled = true;
+    }
     public void Jump(float jumpValue)
     {
         velocity.y = jumpValue;
@@ -129,6 +167,7 @@ public class PlayerController : PhysicsObject
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
+        this.AudioManager.Play("Dead");
         GameManager.EndGame();
 
     }

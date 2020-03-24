@@ -37,6 +37,20 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stop all audio source exept MainTheme
+    /// </summary>
+    public void StopAll()
+    {
+        foreach (var s in sounds)
+        {
+            if (s.Name != "MainTheme")
+            {
+                s.source.Stop();
+            }
+        }
+    }
+
     void Start()
     {
         this.Play("MainTheme");

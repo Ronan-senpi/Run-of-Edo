@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour, IManager
     protected BonusManager bonusManager;
     public BonusManager BonusManager { get { return bonusManager; } }
 
+    [SerializeField]
+    protected AudioManager audioManager;
+    public AudioManager AudioManager { get { return audioManager; } }
 
     public float Score { get; protected set; }
     protected float StartSince = 0;
@@ -73,7 +76,7 @@ public class GameManager : MonoBehaviour, IManager
     // Update is called once per frame
     void Update()
     {
-        if (period > IncrementGameSpeedEverySeconds && !isMaxGameSpeed)
+        if (IsStart && (period > IncrementGameSpeedEverySeconds && !isMaxGameSpeed))
         {
             SpeedUpGame();
             period = 0.0f;
@@ -117,7 +120,20 @@ public class GameManager : MonoBehaviour, IManager
         //Pas fou mais fait le taff pour le moment
         gameSpeed = 0;
     }
+    public void PauseGame()
+    {
+        playerManager.Controller.StopAnimation();
+        playerManager.Controller.Freeze();
+        
+        StopGame();
+    }
 
+    public void ResumeGame()
+    {
+        StartGame();
+        playerManager.Controller.Unfreeze();
+        playerManager.Controller.StartAnimation();
+    }
     public void StartGame()
     {
         gameSpeed = gameSpeedOld;
@@ -147,10 +163,14 @@ public class GameManager : MonoBehaviour, IManager
     }
     IEnumerator RecoverySpeed(float slowdownTime, float MaxSpeedOrigin)
     {
-        //Attends le nombre de seconde passer en paramètre 
-        yield return new WaitForSeconds(slowdownTime);
-        gameSpeed = MaxSpeedOrigin;
-        Player.Controller.Hurt();
+        if (IsStart)
+        {
+            //Attends le nombre de seconde passer en paramètre 
+            yield return new WaitForSeconds(slowdownTime);
+
+            gameSpeed = MaxSpeedOrigin;
+            Player.Controller.Hurt();
+        }
     }
 
     // Bonus

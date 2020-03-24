@@ -32,7 +32,7 @@ public abstract class PhysicsObject : Base
     }
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         //Ne pas utiliser les triggers
         contactFilter.useTriggers = false;

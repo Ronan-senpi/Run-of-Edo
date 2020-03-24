@@ -5,6 +5,11 @@ using EZCameraShake;
 
 public class ShotBody : MonoBehaviour, Destroyable, Shot
 {
+    AudioManager am;
+    private void Start()
+    {
+        am = FindObjectOfType<AudioManager>();
+    }
     public virtual void ExitDestroy()
     {
         Destroy(transform.parent.gameObject);
@@ -13,7 +18,8 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
     public virtual void ShotDestroy()
     {
         GetComponent<Collider2D>().enabled = false;
-        CameraShaker.Instance.ShakeOnce(6f, 6f, .11f, .11f);
+        CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
+        am.Play("AttackHit");
         ExitDestroy();
     }
 
