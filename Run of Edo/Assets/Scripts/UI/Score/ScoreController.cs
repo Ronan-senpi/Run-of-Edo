@@ -22,6 +22,7 @@ public class ScoreController : Base
         {
             formatedScore = 99999999999;
         }
-        scoreTxt.text = Mathf.Round(formatedScore).ToString();
+        this.GameManager.FormatedScore = Mathf.Round(formatedScore);
+        scoreTxt.text = this.GameManager.FormatedScore.ToString();
     }
 }

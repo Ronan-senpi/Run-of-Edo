@@ -9,6 +9,11 @@ public class MainMenuManager : Base
     [SerializeField]
     protected GameObject EndGameMenu;
 
+    [SerializeField]
+    protected Animator crossFadeAnimator;
+    [SerializeField]
+    protected float animationDuration = 1;
+
     AudioManager am;
 
     protected virtual void Start()
@@ -19,7 +24,19 @@ public class MainMenuManager : Base
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadScene(1));
+    }
+
+    private IEnumerator LoadScene(int idScene)
+    {
+        //Play annimation
+        crossFadeAnimator.SetTrigger("Start");
+
+        //Wait
+        yield return new WaitForSeconds(animationDuration);
+
+        //Load
+        SceneManager.LoadScene(idScene);
     }
 
     public void QuitGame()

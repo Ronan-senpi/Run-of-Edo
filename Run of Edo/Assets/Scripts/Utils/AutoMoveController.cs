@@ -18,8 +18,9 @@ public class AutoMoveController : Base
     // This function is called every fixed framerate frame, if the MonoBehaviour is enabled
     private void FixedUpdate()
     {
-        if (enableAutoMove && GameManager.IsStart)
-            transform.position += Vector3.left * (GameManager.GetSpeed() * localSpeedModifier) * Time.deltaTime;
+        if (GameManager != null)
+            if (enableAutoMove && GameManager.IsStart)
+                transform.position += Vector3.left * (GameManager.GetSpeed() * localSpeedModifier) * Time.deltaTime;
         //Debug.Log(name + " : " + (GameManager.GetSpeed() * localSpeedModifier));
     }
 }

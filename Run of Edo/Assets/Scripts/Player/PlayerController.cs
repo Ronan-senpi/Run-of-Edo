@@ -16,6 +16,9 @@ public class PlayerController : PhysicsObject
     [SerializeField]
     protected TapController JumpBtn;
 
+    [SerializeField]
+    protected bool isRunning = true;
+
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
     public Animator GetAnimator()
@@ -29,7 +32,8 @@ public class PlayerController : PhysicsObject
     public bool IsHurt { get; set; }
     public bool IsDead { get; set; }
 
-    public bool Jumping {
+    public bool Jumping
+    {
         get
         {
             return Input.GetButtonDown("Jump") || JumpBtn.IsPressed;
@@ -43,6 +47,8 @@ public class PlayerController : PhysicsObject
     {
         base.Start();
         AudioManager = FindObjectOfType<AudioManager>();
+
+        animator.SetBool("IsRunnig", isRunning);
     }
 
     public bool SpeedUp
@@ -83,20 +89,22 @@ public class PlayerController : PhysicsObject
         //Debug.Log("Btn : " + JumpBtn.IsPressed);
         if (!IsDead)
         {
-            if (GameManager.IsStart)
-            {
+            if (GameManager != null)
+
+                if (GameManager.IsStart)
+                {
 
 
-                jumped = Jumping;
-                base.Update();
+                    jumped = Jumping;
+                    base.Update();
 
-                lastPosition = gameObject.transform.position;
-            }
-            else
-            {
+                    lastPosition = gameObject.transform.position;
+                }
+                else
+                {
 
-                gameObject.transform.position = lastPosition;
-            }
+                    gameObject.transform.position = lastPosition;
+                }
         }
         if (ForceAlive)
         {
@@ -132,7 +140,8 @@ public class PlayerController : PhysicsObject
 
             animator.SetFloat("Jump", Mathf.Abs(velocity.y));
             TargetVelocity = move * maxSpeed;
-        }else
+        }
+        else
         {
         }
 
@@ -168,6 +177,7 @@ public class PlayerController : PhysicsObject
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         //animator.SetBool("IsDead", this.IsDead);
         this.AudioManager.Play("Dead");
+        SaveSystem.SaveScore(this.GameManager.FormatedScore);
         GameManager.EndGame();
 
     }

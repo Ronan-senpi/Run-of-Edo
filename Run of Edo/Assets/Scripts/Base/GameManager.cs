@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour, IManager
     protected float gameSpeedOld = 0;
     public bool IsStart { get { return gameSpeed > 0; } }
 
-
+    public float FormatedScore { get; set; }
 
     private void Awake()
     {

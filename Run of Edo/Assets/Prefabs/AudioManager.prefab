@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1879084585450999004
+--- !u!1 &4987208843471457626
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,36 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1879084585450999005}
-  - component: {fileID: 1879084585450999006}
+  - component: {fileID: 3020230000815970714}
+  - component: {fileID: 6976971044939820424}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1879084585450999005
+--- !u!4 &3020230000815970714
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879084585450999004}
+  m_GameObject: {fileID: 4987208843471457626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.47, y: 6.52, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1879084585450999006
+--- !u!114 &6976971044939820424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879084585450999004}
+  m_GameObject: {fileID: 4987208843471457626}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82deb1ed74805fe409395027081bd22c, type: 3}
@@ -45,42 +45,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MainTheme
-    clip: {fileID: 8300000, guid: da8c9253aa92f6d4e81db634613f9ad1, type: 3}
-    volume: 0.18
+    clip: {fileID: 8300000, guid: f420657819db45149b90c8981b63d6d8, type: 3}
+    volume: 0.3
     pitch: 1
     loop: 1
-  - name: AttackNoHit
-    clip: {fileID: 8300000, guid: 2153898c03a2bb646bd5b8d1e2951ea1, type: 3}
-    volume: 0.801
-    pitch: 0
-    loop: 0
   - name: AttackHit
-    clip: {fileID: 8300000, guid: efe22fd7e591b52419915e3b741e5f05, type: 3}
+    clip: {fileID: 8300000, guid: 0da0a4e138df20c409ed30b3f76f77cd, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
   - name: AttackHit
-    clip: {fileID: 8300000, guid: 576eb1f3c306891489ea7f65215399e3, type: 3}
+    clip: {fileID: 8300000, guid: d8bdadcf5ac18884a8ffbe774767e046, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
   - name: AttackHit
-    clip: {fileID: 8300000, guid: f236602d95727e74b8fde5044374b322, type: 3}
+    clip: {fileID: 8300000, guid: fe9df210cacd65e4cb4ceda5d8aed638, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
   - name: AttackHit
-    clip: {fileID: 8300000, guid: 070c8f57c3c15ce448919434ceff908e, type: 3}
+    clip: {fileID: 8300000, guid: d476651594f13884e8411eb4d9a6ba8f, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
   - name: RunWall
-    clip: {fileID: 8300000, guid: a7ac39ebf6064244dae8894e797da8cb, type: 3}
-    volume: 0.801
-    pitch: 1
+    clip: {fileID: 8300000, guid: 74a31cf73bebed04a9fce9f92f8e3783, type: 3}
+    volume: 0.1
+    pitch: 0.9
     loop: 1
-  - name: RunWood
-    clip: {fileID: 8300000, guid: 9076d80a5d1db964eb1bed2d6ee26aa0, type: 3}
-    volume: 0.2
+  - name: Jump
+    clip: {fileID: 8300000, guid: 4facb68c519511649a77be74ce4fb603, type: 3}
+    volume: 0.1
     pitch: 1
-    loop: 1
+    loop: 0
+  - name: JumpLanding
+    clip: {fileID: 8300000, guid: 15b06bef55917234fbadac3ba2b77fba, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Dead
+    clip: {fileID: 8300000, guid: 4feef1f6717c42d4eb0b2e8f8f24ab15, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 691fbb5d20eb0824d9d8266906039539, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+  - name: Explosion
+    clip: {fileID: 8300000, guid: f62c33aeb4b8b4d418530e6e1437959c, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 0
+  - name: AttackNoHit
+    clip: {fileID: 8300000, guid: 7ab58f0659c8d104bb0eb8f12ab89780, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+  - name: AttackNoHit
+    clip: {fileID: 8300000, guid: 8b339d22058847b47ace89bf09379163, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+  - name: AttackNoHit
+    clip: {fileID: 8300000, guid: 42ec459cea6623947a2b4e0393c61cc8, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+  - name: PauseIn
+    clip: {fileID: 8300000, guid: 6998723bed857d147921491cc94edaa6, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: PauseOut
+    clip: {fileID: 8300000, guid: ce3272add3c70454db47677dd96b4d6b, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
