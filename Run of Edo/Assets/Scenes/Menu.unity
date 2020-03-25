@@ -1740,6 +1740,11 @@ PrefabInstance:
       propertyPath: LoadAnimator
       value: 
       objectReference: {fileID: 958582151}
+    - target: {fileID: 9085191421856717612, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: crossFadeAnimator
+      value: 
+      objectReference: {fileID: 958582151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 887e1bcfc2858114bb164f75db663bf1, type: 3}
 --- !u!4 &9160604156881112611
