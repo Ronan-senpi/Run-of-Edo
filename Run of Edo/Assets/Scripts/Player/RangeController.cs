@@ -29,7 +29,7 @@ public class RangeController : PlayerFollower
     {
         get
         {
-            return Input.GetButtonDown("Fire1") || AttackBtn.IsPressed;
+            return AttackBtn.IsPressed;
         }
     }
     protected override void Awake()
