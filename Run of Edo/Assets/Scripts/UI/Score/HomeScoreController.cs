@@ -12,12 +12,12 @@ public class HomeScoreController : MonoBehaviour
         ScoreData data = SaveSystem.loadScore();
         if (data != null)
         {
-            if (data.HiScore != null && data.HiScore > 0)
+            if (data.HiScore != null)
                 HiScoreTxt.text = HiScoreTxt.text.Replace("[SCORE]", data.HiScore.ToString());
             else
                 HiScoreTxt.enabled = false;
 
-            if (data.LastScore != null && data.LastScore > 0)
+            if (data.LastScore != null)
                 LastScoreTxt.text = LastScoreTxt.text.Replace("[SCORE]", data.LastScore.ToString());
             else
                 LastScoreTxt.enabled = false;

@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : Base
 {
     [SerializeField]
-    protected GameObject EndGameMenu;
-
-    [SerializeField]
     protected Animator crossFadeAnimator;
     [SerializeField]
     protected float animationDuration = 1;
@@ -27,8 +24,10 @@ public class MainMenuManager : Base
         StartCoroutine(LoadScene(1));
     }
 
-    private IEnumerator LoadScene(int idScene)
+    private IEnumerator LoadScene(int idScene, float awaitBeforeAnimation = 0)
     {
+        yield return new WaitForSeconds(awaitBeforeAnimation);
+
         //Play annimation
         crossFadeAnimator.SetTrigger("Start");
 
@@ -64,6 +63,6 @@ public class MainMenuManager : Base
 
     public void EndGame()
     {
-        EndGameMenu.SetActive(true);
+        StartCoroutine(LoadScene(0,1));
     }
 }

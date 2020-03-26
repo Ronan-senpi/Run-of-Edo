@@ -4,13 +4,19 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
-    private static readonly string path = Application.persistentDataPath + "/s.scr";
+    private static readonly string path = Application.persistentDataPath + "/s.sav";
     public static void SaveScore(float lastScore)
     {
+        float hiScore = 0;
+        ScoreData score = loadScore();
+        if (score != null)
+        {
+            hiScore = score.HiScore;
+        }
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        ScoreData data = new ScoreData(lastScore);
+        ScoreData data = new ScoreData(lastScore, hiScore);
 
         formatter.Serialize(stream, data);
     }
