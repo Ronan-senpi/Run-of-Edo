@@ -9,4 +9,4 @@ Run of Edo is a video game made with Unity3D.
 
 [Beepbox](https://beepbox.co/) - Main theme music
 
-(Character Asset)[https://thomas-lean.itch.io/assets]
+[Character Asset](https://thomas-lean.itch.io/assets)
