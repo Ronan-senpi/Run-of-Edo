@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Shot
 {
-    void ShotDestroy(RangeController rangeController);
+    void ShotDestroy();
 }

@@ -13,11 +13,11 @@ public class UnstoppableShotBody : ShotBody
     {
         base.ExitDestroy();
     }
-    public override void ShotDestroy(RangeController rangeController)
+    public override void ShotDestroy()
     {
         if (gameManager.BonusManager.IsAutoRange)
         {
-            base.ShotDestroy(rangeController);
+            base.ShotDestroy();
             return;
         }
 
@@ -27,8 +27,8 @@ public class UnstoppableShotBody : ShotBody
         if (collision.transform.tag == "Player")
         {
             FindObjectOfType<AudioManager>().Play("Explosion");
-            hit.transform.localScale = new Vector3(5, 5, 1);
-            Instantiate(hit, transform.position, Quaternion.identity, collision.transform);
+            //hit.transform.localScale = new Vector3(5, 5, 1);
+            Instantiate(hit, transform.position, Quaternion.identity);
             gameManager.Player.Controller.Dead();
             ExitDestroy();
         }

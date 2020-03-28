@@ -18,12 +18,12 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
         Destroy(transform.parent.gameObject);
     }
 
-    public virtual void ShotDestroy(RangeController rangeController)
+    public virtual void ShotDestroy()
     {
         GetComponent<Collider2D>().enabled = false;
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
         am.Play("AttackHit");
-        Instantiate(hit, transform.position, Quaternion.identity, rangeController.transform);
+        Instantiate(hit, transform.position, Quaternion.identity);
         ExitDestroy();
     }
 

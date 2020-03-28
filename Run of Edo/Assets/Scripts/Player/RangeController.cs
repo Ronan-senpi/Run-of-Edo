@@ -55,7 +55,7 @@ public class RangeController : PlayerFollower
                 AnimateAttack();
                 if (ShotInRange != null)
                 {
-                    ShotInRange.ShotDestroy(this);
+                    ShotInRange.ShotDestroy();
                 }
                 else
                 {
