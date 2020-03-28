@@ -20,6 +20,7 @@ public class RangeController : PlayerFollower
     [SerializeField]
     protected AttackController AttackBtn;
 
+
     protected ShotBody ShotInRange;
     protected bool inAttackAnimation;
 
@@ -54,7 +55,7 @@ public class RangeController : PlayerFollower
                 AnimateAttack();
                 if (ShotInRange != null)
                 {
-                    ShotInRange.ShotDestroy();
+                    ShotInRange.ShotDestroy(this);
                 }
                 else
                 {

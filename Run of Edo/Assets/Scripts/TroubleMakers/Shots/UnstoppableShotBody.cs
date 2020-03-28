@@ -13,11 +13,11 @@ public class UnstoppableShotBody : ShotBody
     {
         base.ExitDestroy();
     }
-    public override void ShotDestroy()
+    public override void ShotDestroy(RangeController rangeController)
     {
         if (gameManager.BonusManager.IsAutoRange)
         {
-            base.ShotDestroy();
+            base.ShotDestroy(rangeController);
             return;
         }
 

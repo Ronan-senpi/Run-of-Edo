@@ -6,6 +6,9 @@ using EZCameraShake;
 public class ShotBody : MonoBehaviour, Destroyable, Shot
 {
     AudioManager am;
+
+    [SerializeField]
+    protected GameObject hit;
     private void Start()
     {
         am = FindObjectOfType<AudioManager>();
@@ -15,11 +18,12 @@ public class ShotBody : MonoBehaviour, Destroyable, Shot
         Destroy(transform.parent.gameObject);
     }
 
-    public virtual void ShotDestroy()
+    public virtual void ShotDestroy(RangeController rangeController)
     {
         GetComponent<Collider2D>().enabled = false;
         CameraShaker.Instance.ShakeOnce(4f, 4f, .25f, .25f);
         am.Play("AttackHit");
+        Instantiate(hit, transform.position, Quaternion.identity, rangeController.transform);
         ExitDestroy();
     }
 
