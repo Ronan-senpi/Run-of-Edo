@@ -27,6 +27,8 @@ public class UnstoppableShotBody : ShotBody
         if (collision.transform.tag == "Player")
         {
             FindObjectOfType<AudioManager>().Play("Explosion");
+            hit.transform.localScale = new Vector3(5, 5, 1);
+            Instantiate(hit, transform.position, Quaternion.identity, collision.transform);
             gameManager.Player.Controller.Dead();
             ExitDestroy();
         }

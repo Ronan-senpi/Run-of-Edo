@@ -9,7 +9,7 @@ public class DeleteAfterAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + delay);
+        Destroy(gameObject, this.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + delay);
     }
 
 }
