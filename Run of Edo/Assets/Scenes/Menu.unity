@@ -841,10 +841,85 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6052055358323236757, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 256.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358323236757, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 424.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358323236758, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_text
+      value: 'Meilleur score :  [SCORE]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358323236758, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358323236758, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 2.1566813
+      objectReference: {fileID: 0}
     - target: {fileID: 6052055358325422933, guid: 887e1bcfc2858114bb164f75db663bf1,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358442792171, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -152.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358442792171, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000021453
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358442792172, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_text
+      value: JOUER
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055358442792172, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456123, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -155.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456123, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 270.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456124, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_text
+      value: 'Score :  [SCORE]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456124, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456124, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052055359349456124, guid: 887e1bcfc2858114bb164f75db663bf1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6052055359954057377, guid: 887e1bcfc2858114bb164f75db663bf1,
         type: 3}
