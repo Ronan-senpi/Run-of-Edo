@@ -1,6 +1,8 @@
 # Run-of-Edo
 Run of Edo is a video game made with Unity3D. 
 
+[<img src="./SCREENSHOT/fr_badge_web_generic.png" height="75">](https://play.google.com/store/apps/details?id=com.Zeroichi.RunofEdo&gl=FR)
+
 # Built with
 
 [EZ Camera Shake](https://github.com/andersonaddo/EZ-Camera-Shake-Unity) - Unity package for shake camera
